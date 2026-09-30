@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: #58111A;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* شاشة الباسورد والقلب الكبير اللي في البرواز بره */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #58111A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.5s ease;
+            overflow: hidden;
+        }
+
+        /* قلوب الخلفية اللي بتطير */
+        .floating-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: flyUp 4s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .heart-card {
+            background: rgba(255, 255, 255, 0.12);
+            width: 85%;
+            max-width: 340px;
+            padding: 30px 20px;
+            border-radius: 150px 150px 120px 120px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* صورة البروفايل البارزة في شاشة القلب بره */
+        .profile-pic {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff4d6d;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .heart-card h2 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .heart-card p {
+            font-size: 13px;
+            color: #ffccd5;
+            margin-bottom: 20px;
+        }
+
+        .heart-card input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .heart-card button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+        
+        /* المحتوى الرئيسي بعد الدخول */
+        #main-content {
+            display: none;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px 0;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .message-card {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ffe6eb;
+        }
+        .counter-box {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        .time-unit {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 12px;
+            min-width: 70px;
+        }
+        .time-unit span {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .time-unit label {
+            font-size: 12px;
+            color: #ffccd5;
+        }
+        .photo-frame {
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #333;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .caption {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffccd5;
+            margin-bottom: 5px;
+        }
+        .footer-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin: 20px 0 30px 0;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شاشة الباسورد وصورة البروفايل بتاعتكم بره -->
+    <div id="lock-screen">
+        <div class="heart-card">
+            <img src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg" alt="Profile" class="profile-pic">
+            <h2>جاهزة 🥹</h2>
+            <p>my everything</p>
+            <input type="password" id="password-input" placeholder="اكتب الباسورد (love)">
+            <button onclick="checkPassword()">Unlock 🔓</button>
+        </div>
+    </div>
+
+    <!-- موسيقى الخلفية -->
+    <audio id="bg-music" loop>
+        <source src="https://cdns-preview--d.dzcdn.net/stream/c-deda73b22416805822b3b752945ba4d8-3.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- المحتوى الأساسي بعد فتح القفل -->
+    <div id="main-content">
+        
+        <!-- رسالة البداية -->
+        <div class="card message-card">
+            حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗
+        </div>
+
+        <!-- العداد وتاريخ أول كلام (7/5/2026) -->
+        <div class="card">
+            <h3 style="margin-bottom: 10px; color: #ffccd5;">ببدايتنا 🌸</h3>
+            <p style="font-size: 13px; color: #ddd; margin-bottom: 10px;">سوا من 2026-05-07</p>
+            <div class="counter-box" id="counter">
+                <div class="time-unit"><span id="days">0</span><label>يوم</label></div>
+                <div class="time-unit"><span id="hours">0</span><label>ساعة</label></div>
+                <div class="time-unit"><span id="minutes">0</span><label>دقيقة</label></div>
+                <div class="time-unit"><span id="seconds">0</span><label>ثانية</label></div>
+            </div>
+            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤️️</p>
+        </div>
+
+        <!-- تاريخ أول مرة قلتلك بحبك (14/6/2026) -->
+        <div class="card" style="padding: 15px;">
+            <p style="font-size: 14px; color: #ffccd5;">📌 يوم ما قولتلك بحبك</p>
+            <h4 style="margin-top: 5px;">2026-06-14</h4>
+        </div>
+
+        <!-- الصورة الأولى -->
+        <div class="card">
+            <div class="photo-frame">
+                <img src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg" alt="Photo 1">
+            </div>
+            <div class="caption">بحبك يبطتي 🌍❤️</div>
+        </div>
+
+        <!-- الصورة الثانية -->
+        <div class="card">
+            <div class="photo-frame">
+                <img src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg" alt="Photo 2">
+            </div>
+            <div class="caption">نور عيني ❤️</div>
+        </div>
+
+        <!-- الصورة الثالثة -->
+        <div class="card">
+            <div class="photo-frame">
+                <img src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png" alt="Photo 3">
+            </div>
+            <div class="caption">بوسة الاستيك أحلى 😂❤️</div>
+        </div>
+
+        <div style="font-size: 15px; color: #ffccd5; margin: 10px 0;">
+            كل يوم بحبك أكتر من الي قبله ❤
+        </div>
+
+        <!-- الختام -->
+        <div class="footer-message">
+            وبس كده.. بعدين هنكبره سوا يا عيوني ❤️
+        </div>
+
+    </div>
+
+    <script>
+        // قلوب متحركة للخلفية
+        function createHearts() {
+            const lockScreen = document.getElementById('lock-screen');
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            lockScreen.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHearts, 300);
+
+        // فتح القفل بالباسورد
+        function checkPassword() {
+            const pass = document.getElementById('password-input').value.trim().toLowerCase();
+            if (pass === 'love') {
+                document.getElementById('lock-screen').style.opacity = 0;
+                setTimeout(() => {
+                    document.getElementById('lock-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'flex';
+                    const music = document.getElementById('bg-music');
+                    music.play().catch(e => console.log("Audio play blocked"));
+                }, 500);
+            } else {
+                alert('الباسورد غلط! اكتبي: love');
+            }
+        }
+
+        // العداد الزمني من تاريخ 2026-05-07
+        const startDate = new Date('2026-05-07T00:00:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+    </script>
+</body>
+</html>
