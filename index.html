@@ -20,9 +20,9 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            padding-bottom: 50px;
         }
         
-        /* شاشة الباسورد والقلب الكبير اللي في البرواز بره */
         #lock-screen {
             position: fixed;
             top: 0;
@@ -36,10 +36,8 @@
             align-items: center;
             z-index: 999;
             transition: opacity 0.5s ease;
-            overflow: hidden;
         }
 
-        /* قلوب الخلفية اللي بتطير */
         .floating-heart {
             position: absolute;
             color: #ff4d6d;
@@ -69,7 +67,6 @@
             z-index: 2;
         }
 
-        /* صورة البروفايل البارزة في شاشة القلب بره */
         .profile-pic {
             width: 85px;
             height: 85px;
@@ -117,7 +114,6 @@
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
         }
         
-        /* المحتوى الرئيسي بعد الدخول */
         #main-content {
             display: none;
             width: 100%;
@@ -126,6 +122,31 @@
             flex-direction: column;
             align-items: center;
         }
+
+        /* شريط الأغاني الظاهر تحت */
+        .music-player-bar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .music-player-bar audio {
+            width: 100%;
+            height: 35px;
+            margin-top: 5px;
+        }
+        .song-title {
+            font-size: 13px;
+            color: #ffccd5;
+            margin-bottom: 3px;
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
@@ -137,10 +158,22 @@
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
+        
+        .step-section {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+        .step-section.active {
+            display: flex;
+        }
+
         .message-card {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.8;
             color: #ffe6eb;
+            min-height: 60px;
         }
         .counter-box {
             display: flex;
@@ -149,17 +182,17 @@
         }
         .time-unit {
             background: rgba(0,0,0,0.2);
-            padding: 10px;
+            padding: 8px;
             border-radius: 12px;
-            min-width: 70px;
+            min-width: 65px;
         }
         .time-unit span {
             display: block;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-        }
+        } المؤشر والكلام اللي بيترس
         .time-unit label {
-            font-size: 12px;
+            font-size: 11px;
             color: #ffccd5;
         }
         .photo-frame {
@@ -180,98 +213,113 @@
             font-weight: bold;
             color: #ffccd5;
             margin-bottom: 5px;
+            min-height: 30px;
         }
-        .footer-message {
-            font-size: 18px;
-            font-weight: bold;
+        
+        .action-btn {
+            background: rgba(255, 255, 255, 0.15);
             color: #fff;
-            margin: 20px 0 30px 0;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .action-btn:hover {
+            background: #ff4d6d;
+            border-color: #ff4d6d;
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة الباسورد وصورة البروفايل بتاعتكم بره -->
+    <!-- شاشة قفل الباسورد -->
     <div id="lock-screen">
         <div class="heart-card">
             <img src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg" alt="Profile" class="profile-pic">
-            <h2>جاهزة 🥹</h2>
+            <h2>Ready? 🥹</h2>
             <p>my everything</p>
             <input type="password" id="password-input" placeholder="اكتب الباسورد (love)">
             <button onclick="checkPassword()">Unlock 🔓</button>
         </div>
     </div>
 
-    <!-- موسيقى الخلفية المرفوعة محلياً -->
-    <audio id="bg-music" loop>
-        <source src="song.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- المحتوى الأساسي بعد فتح القفل -->
+    <!-- محتوى الموقع الأساسي -->
     <div id="main-content">
         
-        <!-- رسالة البداية -->
-        <div class="card message-card">
-            حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗
+        <!-- شريط الأغاني الظاهر تحت ومتحكم فيه (أغنيتين) -->
+        <div class="music-player-bar">
+            <div class="song-title" id="current-song-name">🎶 Now Playing: Song 1</div>
+            <audio id="audio-player" controls>
+                <source src="song1.mp3" type="audio/mp3">
+                متصفحك لا يدعم تشغيل الصوت
+            </audio>
         </div>
 
-        <!-- العداد وتاريخ أول كلام (7/5/2026) -->
-        <div class="card">
-            <h3 style="margin-bottom: 10px; color: #ffccd5;">ببدايتنا 🌸</h3>
-            <p style="font-size: 13px; color: #ddd; margin-bottom: 10px;">سوا من 2026-05-07</p>
-            <div class="counter-box" id="counter">
-                <div class="time-unit"><span id="days">0</span><label>يوم</label></div>
-                <div class="time-unit"><span id="hours">0</span><label>ساعة</label></div>
-                <div class="time-unit"><span id="minutes">0</span><label>دقيقة</label></div>
-                <div class="time-unit"><span id="seconds">0</span><label>ثانية</label></div>
+        <!-- الخطوة الأولى -->
+        <div id="step-1" class="step-section active">
+            <div class="card message-card" data-text="بحبك بكل حاجة في حياتي، وحقك عليا لو ضايقتك تعالِ نفكر كل حاجة بينا هنا ونبدأ بداية جديده <br>loveee youu 🤍"></div>
+            <button class="action-btn" onclick="nextStep(2)">Next 💖</button>
+        </div>
+
+        <!-- الخطوة الثانية (تاريخ البداية والعداد) -->
+        <div id="step-2" class="step-section">
+            <div class="card">
+                <h3 style="margin-bottom: 5px; color: #ffccd5;">بدايتنا 🌸</h3>
+                <p style="font-size: 13px; color: #ddd; margin-bottom: 10px;">سوا من التاريخ المميز</p>
+                <div class="counter-box" id="counter">
+                    <div class="time-unit"><span id="days">0</span><label>يوم</label></div>
+                    <div class="time-unit"><span id="hours">0</span><label>ساعة</label></div>
+                    <div class="time-unit"><span id="minutes">0</span><label>دقيقة</label></div>
+                    <div class="time-unit"><span id="seconds">0</span><label>ثانية</label></div>
+                </div>
+                <p style="font-size: 13px; margin-top: 5px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤</p>
             </div>
-            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤</p>
+            <button class="action-btn" onclick="nextStep(3)">Memories 📸</button>
         </div>
 
-        <!-- تاريخ أول مرة قلتلك بحبك (14/6/2026) -->
-        <div class="card" style="padding: 15px;">
-            <p style="font-size: 14px; color: #ffccd5;">📌 يوم ما قولتلك بحبك</p>
-            <h4 style="margin-top: 5px;">2026-06-14</h4>
-        </div>
-
-        <!-- الصورة الأولى -->
-        <div class="card">
-            <div class="photo-frame">
-                <img src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg" alt="Photo 1">
+        <!-- الخطوة الثالثة (الصور والذكريات) -->
+        <div id="step-3" class="step-section">
+            <div class="card">
+                <div class="photo-frame">
+                    <img src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg" alt="Photo 1">
+                </div>
+                <div class="caption" data-text="بحبك يبطتي 🌍❤️"></div>
             </div>
-            <div class="caption">بحبك يبطتي 🌍❤️</div>
+            <button class="action-btn" onclick="nextStep(4)">Next 🤎</button>
         </div>
 
-        <!-- الصورة الثانية -->
-        <div class="card">
-            <div class="photo-frame">
-                <img src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg" alt="Photo 2">
+        <!-- الخطوة الرابعة (الصورة الثانية وبداية الأغنية الثانية) -->
+        <div id="step-4" class="step-section">
+            <div class="card">
+                <div class="photo-frame">
+                    <img src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg" alt="Photo 2">
+                </div>
+                <div class="caption" data-text="نور عيني ❤️"></div>
             </div>
-            <div class="caption">نور عيني ❤️</div>
+            <div class="card message-card" style="font-size: 14px;" data-text="بحبك قوي<br>حق عليا لو زعلتك 💋<br>ربنا يخليكي ليا"></div>
+            <button class="action-btn" onclick="switchToSecondSong(); nextStep(5);">Memories 💕</button>
         </div>
 
-        <!-- الصورة الثالثة -->
-        <div class="card">
-            <div class="photo-frame">
-                <img src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png" alt="Photo 3">
+        <!-- الخطوة الخامسة (الخاتمة) -->
+        <div id="step-5" class="step-section">
+            <div class="card">
+                <div class="photo-frame">
+                    <img src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png" alt="Photo 3">
+                </div>
+                <div class="caption" data-text="بوسة الاستيك أحلى 😂❤️"></div>
             </div>
-            <div class="caption">بوسة الاستيك أحلى 😂❤️</div>
-        </div>
-
-        <div style="font-size: 15px; color: #ffccd5; margin: 10px 0;">
-            كل يوم بحبك أكتر من الي قبله ❤
-        </div>
-
-        <!-- الختام -->
-        <div class="footer-message">
-            وبس كده.. بعدين هنكبره سوا يا عيوني ❤️
+            <div class="card message-card" style="font-size: 18px; font-weight: bold; color: #fff;" data-text="وبس كده.. وبنكبر الذكريات سوا يا عيوني ❤️"></div>
         </div>
 
     </div>
 
     <script>
-        // قلوب متحركة للخلفية
         function createHearts() {
             const lockScreen = document.getElementById('lock-screen');
             const heart = document.createElement('div');
@@ -280,13 +328,10 @@
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
             lockScreen.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+            setTimeout(() => { heart.remove(); }, 4000);
         }
         setInterval(createHearts, 300);
 
-        // فتح القفل بالباسورد وتشغيل الأغنية المحلية
         function checkPassword() {
             const pass = document.getElementById('password-input').value.trim().toLowerCase();
             if (pass === 'love') {
@@ -294,15 +339,65 @@
                 setTimeout(() => {
                     document.getElementById('lock-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'flex';
-                    const music = document.getElementById('bg-music');
-                    music.play().catch(e => console.log("Audio play blocked"));
+                    
+                    const audio = document.getElementById('audio-player');
+                    audio.play().catch(e => console.log("Audio play blocked"));
+                    
+                    // تشغيل ترسيّة الكلمات للخطوة الأولى فور الفتح
+                    typeWriterEffect(document.querySelector('#step-1 .message-card'));
                 }, 500);
             } else {
                 alert('الباسورد غلط! اكتبي: love');
             }
         }
 
-        // العداد الزمني من تاريخ 2026-05-07
+        // دالة ترسية الكلام حرف بحرف (Typewriter Effect)
+        function typeWriterEffect(element) {
+            if (!element || element.dataset.typed) return;
+            element.dataset.typed = "true";
+            
+            const htmlContent = element.getAttribute('data-text');
+            element.innerHTML = "";
+            let i = 0;
+            
+            function typing() {
+                if (i < htmlContent.length) {
+                    // معالجة سريعة لوسوم الـ HTML زي <br> عشان متبوظش
+                    if (htmlContent.substr(i, 5) === '<br>') {
+                        element.innerHTML += '<br>';
+                        i += 5;
+                    } else {
+                        element.innerHTML += htmlContent.charAt(i);
+                        i++;
+                    }
+                    setTimeout(typing, 40); // سرعة ترسية الكلام
+                }
+            }
+            typing();
+        }
+
+        function nextStep(stepNumber) {
+            const sections = document.querySelectorAll('.step-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            const targetSection = document.getElementById('step-' + stepNumber);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // تشغيل تأثير ترسية الكلام في الخطوة الجديدة
+                const elementsToType = targetSection.querySelectorAll('[data-text]');
+                elementsToType.forEach(el => typeWriterEffect(el));
+            }
+        }
+
+        function switchToSecondSong() {
+            const audio = document.getElementById('audio-player');
+            audio.src = 'song2.mp3';
+            document.getElementById('current-song-name').innerText = '🎶 Now Playing: Song 2';
+            audio.play().catch(e => console.log("Audio 2 play blocked"));
+        }
+
         const startDate = new Date('2026-05-07T00:00:00');
 
         function updateCounter() {
@@ -324,4 +419,5 @@
         updateCounter();
     </script>
 </body>
-</html>
+                </html>
+                                               
