@@ -22,7 +22,7 @@
             position: relative;
         }
         
-        /* شاشة الباسورد والقلب الكبير اللي في الفيديو */
+        /* شاشة الباسورد والقلب الكبير اللي في البرواز بره */
         #lock-screen {
             position: fixed;
             top: 0;
@@ -69,13 +69,15 @@
             z-index: 2;
         }
 
+        /* صورة البروفايل البارزة في شاشة القلب بره */
         .profile-pic {
-            width: 70px;
-            height: 70px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ff4d6d;
-            margin-bottom: 10px;
+            border: 3px solid #ff4d6d;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .heart-card h2 {
@@ -115,7 +117,7 @@
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
         }
         
-        /* المحتوى الرئيسي */
+        /* المحتوى الرئيسي بعد الدخول */
         #main-content {
             display: none;
             width: 100%;
@@ -190,24 +192,23 @@
 </head>
 <body>
 
-    <!-- شاشة إدخال الباسورد بتصميم القلب وصورة البروفايل -->
+    <!-- شاشة الباسورد وصورة البروفايل بتاعتكم بره -->
     <div id="lock-screen">
         <div class="heart-card">
-            <!-- صورة البروفايل اللي بتظهر جوه القلب في البداية -->
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="Profile" class="profile-pic">
+            <img src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg" alt="Profile" class="profile-pic">
             <h2>جاهزة 🥹</h2>
             <p>my everything</p>
-            <input type="password" id="password-input" placeholder="password">
+            <input type="password" id="password-input" placeholder="اكتب الباسورد (love)">
             <button onclick="checkPassword()">Unlock 🔓</button>
         </div>
     </div>
 
-    <!-- موسيقى الخلفية (تامر عاشور - أنت هديت ربنا ليا) -->
+    <!-- موسيقى الخلفية -->
     <audio id="bg-music" loop>
         <source src="https://cdns-preview--d.dzcdn.net/stream/c-deda73b22416805822b3b752945ba4d8-3.mp3" type="audio/mp3">
     </audio>
 
-    <!-- المحتوى الأساسي بعد فك الباسورد -->
+    <!-- المحتوى الأساسي بعد فتح القفل -->
     <div id="main-content">
         
         <!-- رسالة البداية -->
@@ -215,7 +216,7 @@
             حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗
         </div>
 
-        <!-- العداد وتاريخ أول كلام -->
+        <!-- العداد وتاريخ أول كلام (7/5/2026) -->
         <div class="card">
             <h3 style="margin-bottom: 10px; color: #ffccd5;">ببدايتنا 🌸</h3>
             <p style="font-size: 13px; color: #ddd; margin-bottom: 10px;">سوا من 2026-05-07</p>
@@ -225,43 +226,44 @@
                 <div class="time-unit"><span id="minutes">0</span><label>دقيقة</label></div>
                 <div class="time-unit"><span id="seconds">0</span><label>ثانية</label></div>
             </div>
-            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤️</p>
+            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤️️</p>
         </div>
 
-        <!-- تاريخ أول مرة قلتلك بحبك -->
+        <!-- تاريخ أول مرة قلتلك بحبك (14/6/2026) -->
         <div class="card" style="padding: 15px;">
             <p style="font-size: 14px; color: #ffccd5;">📌 يوم ما قولتلك بحبك</p>
             <h4 style="margin-top: 5px;">2026-06-14</h4>
         </div>
 
-        <!-- الصور والتعليقات -->
+        <!-- الصورة الأولى -->
         <div class="card">
             <div class="photo-frame">
-                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop" alt="Photo 1">
+                <img src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg" alt="Photo 1">
             </div>
             <div class="caption">بحبك يبطتي 🌍❤️</div>
         </div>
 
+        <!-- الصورة الثانية -->
         <div class="card">
             <div class="photo-frame">
-                <img src="https://images.unsplash.com/photo-1522748925529-10502e86d226?q=80&w=600&auto=format&fit=crop" alt="Photo 2">
+                <img src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg" alt="Photo 2">
             </div>
             <div class="caption">نور عيني ❤️</div>
         </div>
 
+        <!-- الصورة الثالثة -->
         <div class="card">
             <div class="photo-frame">
-                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop" alt="Photo 3">
+                <img src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png" alt="Photo 3">
             </div>
             <div class="caption">بوسة الاستيك أحلى 😂❤️</div>
         </div>
 
-        <!-- رسالة تحت العداد -->
         <div style="font-size: 15px; color: #ffccd5; margin: 10px 0;">
-            كل يوم بحبك أكتر من الي قبله ❤️
+            كل يوم بحبك أكتر من الي قبله ❤
         </div>
 
-        <!-- الرسالة الأخيرة (الختام) -->
+        <!-- الختام -->
         <div class="footer-message">
             وبس كده.. بعدين هنكبره سوا يا عيوني ❤️
         </div>
@@ -269,7 +271,7 @@
     </div>
 
     <script>
-        // خلق قلوب متحركة في الخلفية زي الفيديو
+        // قلوب متحركة للخلفية
         function createHearts() {
             const lockScreen = document.getElementById('lock-screen');
             const heart = document.createElement('div');
@@ -284,7 +286,7 @@
         }
         setInterval(createHearts, 300);
 
-        // التحقق من الباسورد (خليناه بسيط: love عشان ميتلخبطش فيه)
+        // فتح القفل بالباسورد
         function checkPassword() {
             const pass = document.getElementById('password-input').value.trim().toLowerCase();
             if (pass === 'love') {
@@ -292,7 +294,6 @@
                 setTimeout(() => {
                     document.getElementById('lock-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'flex';
-                    // تشغيل الأغنية
                     const music = document.getElementById('bg-music');
                     music.play().catch(e => console.log("Audio play blocked"));
                 }, 500);
@@ -301,7 +302,7 @@
             }
         }
 
-        // حساب العداد (من تاريخ أول كلام: 2026-05-07)
+        // العداد الزمني من تاريخ 2026-05-07
         const startDate = new Date('2026-05-07T00:00:00');
 
         function updateCounter() {
@@ -323,5 +324,4 @@
         updateCounter();
     </script>
 </body>
-    </html>
-    
+</html>
