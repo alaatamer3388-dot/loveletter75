@@ -4,11 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Love ❤️</title>
-
+<title>My life ❤️</title>
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,77 +17,47 @@ body {
     color: white;
     font-family: Arial, Tahoma, sans-serif;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px;
 }
 
-
-/* ==============================
-   شاشة الدخول
-============================== */
-
+/* شاشة الدخول */
 #lockScreen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-
     background: #58111A;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 9999;
-
     transition: opacity 0.7s ease;
-
     overflow: hidden;
 }
-
-
-/* القلوب المتحركة */
 
 .floating-heart {
     position: absolute;
     bottom: -30px;
-
     color: #ff4d6d;
-
     font-size: 20px;
-
     animation: heartUp 5s linear forwards;
-
     pointer-events: none;
 }
 
 @keyframes heartUp {
-
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
 }
-
-
-/* ==============================
-   القلب
-============================== */
 
 .heart-container {
     position: relative;
-
     width: 330px;
     height: 380px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,175 +65,84 @@ body {
 
 .heart {
     position: absolute;
-
     width: 260px;
     height: 230px;
-
     background: rgba(255, 77, 109, 0.25);
-
     transform: rotate(-45deg);
-
     border-radius: 25px;
-
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
-.heart::before {
+.heart::before, .heart::after {
     content: "";
-
     position: absolute;
-
     width: 260px;
     height: 230px;
-
     background: rgba(255, 77, 109, 0.25);
-
     border-radius: 50%;
-
-    top: -115px;
-    left: 0;
 }
-
-.heart::after {
-    content: "";
-
-    position: absolute;
-
-    width: 260px;
-    height: 230px;
-
-    background: rgba(255, 77, 109, 0.25);
-
-    border-radius: 50%;
-
-    top: 0;
-    left: 115px;
-}
-
-
-/* محتوى القلب */
+.heart::before { top: -115px; left: 0; }
+.heart::after { top: 0; left: 115px; }
 
 .heart-content {
     position: relative;
-
     z-index: 10;
-
     width: 230px;
-
     text-align: center;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
-/* الصورة */
-
 .profile {
     width: 75px;
     height: 75px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
     border: 3px solid #ff4d6d;
-
     margin-bottom: 8px;
 }
 
-
-/* Ready */
-
-.heart-content h1 {
-    font-size: 28px;
-
-    margin-bottom: 3px;
-}
-
-.heart-content p {
-    font-size: 12px;
-
-    color: #ffccd5;
-
-    margin-bottom: 10px;
-}
-
-
-/* الباسورد */
+.heart-content h1 { font-size: 28px; margin-bottom: 3px; }
+.heart-content p { font-size: 12px; color: #ffccd5; margin-bottom: 10px; }
 
 #password {
     width: 200px;
-
     height: 38px;
-
     border: none;
     outline: none;
-
     border-radius: 20px;
-
     text-align: center;
-
     font-size: 14px;
-
     margin-bottom: 10px;
 }
 
-
-/* زر الفتح */
-
 .unlock {
     border: none;
-
     background: #ff4d6d;
-
     color: white;
-
     padding: 10px 25px;
-
     border-radius: 25px;
-
     font-size: 14px;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
-
-/* ==============================
-   الموقع الأساسي
-============================== */
-
+/* الموقع الأساسي */
 #main {
     display: none;
-
     width: 100%;
-
     max-width: 480px;
-
     margin: auto;
-
     padding: 20px;
 }
 
-
-/* ==============================
-   الصفحات
-============================== */
-
 .page {
     display: none;
-
-    min-height: calc(100vh - 40px);
-
+    min-height: calc(100vh - 120px);
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
-
     animation: pageShow 0.6s ease;
 }
 
@@ -275,1097 +151,371 @@ body {
 }
 
 @keyframes pageShow {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-
-/* ==============================
-   الرسالة الأولى
-============================== */
 
 .message-box {
     width: 100%;
-
     background: rgba(255,255,255,0.08);
-
     border: 1px solid rgba(255,255,255,0.12);
-
     border-radius: 22px;
-
     padding: 25px 20px;
-
     text-align: center;
-
     color: #ffe6eb;
-
     font-size: 16px;
-
     line-height: 2;
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-#typing {
-    min-height: 190px;
-}
+#typing { min-height: 190px; }
 
-
-/* ==============================
-   مشغل الأغنية
-============================== */
-
-.music-box {
-
-    width: 100%;
-
-    margin-top: 18px;
-
-    padding: 15px;
-
-    background: rgba(0,0,0,0.25);
-
-    border-radius: 18px;
-
-    text-align: center;
-}
-
-.music-title {
-
-    color: #ffccd5;
-
-    font-size: 14px;
-
-    margin-bottom: 8px;
-}
-
-audio {
-
-    width: 100%;
-
-    height: 40px;
-}
-
-
-/* ==============================
-   زر Next
-============================== */
-
-.next {
-
+.next-btn {
     margin-top: 22px;
-
     border: none;
-
     background: #ff4d6d;
-
     color: white;
-
-    padding: 11px 35px;
-
+    padding: 10px 30px;
     border-radius: 25px;
-
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     box-shadow: 0 5px 18px rgba(255,77,109,0.4);
 }
 
-
-/* ==============================
-   الكروت
-============================== */
-
 .card {
-
     width: 100%;
-
     background: rgba(255,255,255,0.08);
-
     border: 1px solid rgba(255,255,255,0.1);
-
     border-radius: 22px;
-
     padding: 25px;
-
     text-align: center;
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.card h2 {
-
-    color: #ffccd5;
-
-    margin-bottom: 10px;
-}
-
-.card p {
-
-    color: #ddd;
-
-    font-size: 14px;
-}
-
-
-/* ==============================
-   العداد
-============================== */
+.card h2 { color: #ffccd5; margin-bottom: 10px; }
+.card p { color: #ddd; font-size: 14px; }
 
 .counter {
-
     display: flex;
-
     justify-content: center;
-
     gap: 6px;
-
     margin: 20px 0;
 }
 
 .time {
-
     width: 68px;
-
     padding: 10px 4px;
-
     background: rgba(0,0,0,0.25);
-
     border-radius: 13px;
 }
 
-.time span {
-
-    display: block;
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-.time small {
-
-    color: #ffccd5;
-
-    font-size: 11px;
-}
-
-
-/* ==============================
-   الصور
-============================== */
+.time span { display: block; font-size: 20px; font-weight: bold; }
+.time small { color: #ffccd5; font-size: 11px; }
 
 .photo-card {
-
     width: 100%;
-
     background: rgba(255,255,255,0.08);
-
     border-radius: 22px;
-
     padding: 15px;
-
     text-align: center;
-
     border: 1px solid rgba(255,255,255,0.1);
 }
 
 .photo {
-
     width: 100%;
-
     height: 380px;
-
     overflow: hidden;
-
     border-radius: 17px;
-
     background: #222;
 }
 
 .photo img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
 }
 
 .caption {
-
     margin-top: 13px;
-
     color: #ffccd5;
-
     font-size: 16px;
-
     font-weight: bold;
 }
 
-
-/* ==============================
-   النهاية
-============================== */
-
-.final {
-
-    text-align: center;
-
-    line-height: 2;
+/* مشغل الموسيقى الثابت بالأسفل */
+.fixed-music-player {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 460px;
+    background: rgba(88, 17, 26, 0.95);
+    border: 1px solid rgba(255, 77, 109, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
-.final-small {
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.player-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff4d6d;
+}
+
+.player-title {
+    font-size: 13px;
     color: #ffccd5;
-
-    font-size: 16px;
-
-    margin-bottom: 20px;
 }
 
-.final-big {
-
-    font-size: 20px;
-
-    font-weight: bold;
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-
-/* ==============================
-   الموبايل
-============================== */
-
-@media (max-width: 380px) {
-
-    .heart-container {
-        transform: scale(0.9);
-    }
-
-    .photo {
-        height: 330px;
-    }
-
-    .time {
-        width: 62px;
-    }
+.player-controls button {
+    background: #ff4d6d;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
 }
-
 </style>
 </head>
-
-
 <body>
 
-
-<!-- ==================================================
-     شاشة Ready
-================================================== -->
-
+<!-- شاشة القفل -->
 <div id="lockScreen">
-
     <div class="heart-container">
-
         <div class="heart"></div>
-
-
         <div class="heart-content">
-
-            <img
-                class="profile"
-                src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg"
-                alt="Profile"
-            >
-
-
-            <h1>
-                Ready
-            </h1>
-
-
-            <p>
-                my everything ❤️
-            </p>
-
-
-            <input
-                id="password"
-                type="password"
-                placeholder="اكتب الباسورد"
-            >
-
-
-            <button
-                class="unlock"
-                onclick="openWebsite()"
-            >
-                Unlock 🔓
-            </button>
-
+            <img class="profile" src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg" alt="Profile">
+            <h1>جاهزه 😉</h1>
+            <p>❤ my everything</p>
+            <input id="password" type="password" placeholder="password">
+            <button class="unlock" onclick="openWebsite()">Unlock 🔓</button>
         </div>
-
     </div>
-
 </div>
 
-
-
-<!-- ==================================================
-     الموقع
-================================================== -->
-
+<!-- المحتوى الأساسي -->
 <div id="main">
-
-
-    <!-- ==============================================
-         الصفحة الأولى
-    =============================================== -->
-
-    <div
-        class="page active"
-        id="page1"
-    >
-
+    <!-- الصفحة 1 -->
+    <div class="page active" id="page1">
         <div class="message-box">
-
             <div id="typing"></div>
-
         </div>
-
-
-        <div class="music-box">
-
-            <div class="music-title">
-                🎵 Our Song ❤️
-            </div>
-
-
-            <audio
-                id="music"
-                controls
-                loop
-            >
-
-                <source
-                    src="song.mp3"
-                    type="audio/mpeg"
-                >
-
-            </audio>
-
-        </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة الثانية - العداد
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page2"
-    >
-
+    <!-- الصفحة 2 (العداد) -->
+    <div class="page" id="page2">
         <div class="card">
-
-            <h2>
-                ببدايتنا 🌸
-            </h2>
-
-
-            <p>
-                سوا من 2026-05-07
-            </p>
-
-
+            <h2>ببدايتنا 🌸</h2>
+            <p>سوا من 2025-10-03</p>
             <div class="counter">
-
-
-                <div class="time">
-
-                    <span id="days">
-                        0
-                    </span>
-
-                    <small>
-                        يوم
-                    </small>
-
-                </div>
-
-
-                <div class="time">
-
-                    <span id="hours">
-                        0
-                    </span>
-
-                    <small>
-                        ساعة
-                    </small>
-
-                </div>
-
-
-                <div class="time">
-
-                    <span id="minutes">
-                        0
-                    </span>
-
-                    <small>
-                        دقيقة
-                    </small>
-
-                </div>
-
-
-                <div class="time">
-
-                    <span id="seconds">
-                        0
-                    </span>
-
-                    <small>
-                        ثانية
-                    </small>
-
-                </div>
-
+                <div class="time"><span id="days">0</span><small>يوم</small></div>
+                <div class="time"><span id="hours">0</span><small>ساعة</small></div>
+                <div class="time"><span id="minutes">0</span><small>دقيقة</small></div>
+                <div class="time"><span id="seconds">0</span><small>ثانية</small></div>
             </div>
-
-
-            <p style="color:#ffccd5;">
-                كل ثانية بتعدي وأنت في قلبي ❤
-            </p>
-
+            <p style="color:#ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤</p>
         </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة الثالثة - أول بحبك
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page3"
-    >
-
+    <!-- الصفحة 3 -->
+    <div class="page" id="page3">
         <div class="card">
-
-            <h2>
-                📌 يوم ما قولتلك بحبك
-            </h2>
-
-
-            <p
-                style="
-                font-size:20px;
-                color:white;
-                "
-            >
-                2026-06-14
-            </p>
-
+            <h2>📌 يوم ما قولتلك بحبك</h2>
+            <p style="font-size:20px; color:white; margin-top:10px;">2025-10-03</p>
         </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة الرابعة - برشلونة
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page4"
-    >
-
+    <!-- الصفحة 4 (صورة برشلونة بقت هي الأولى، وبالكلام بتاع صورة البوسة "بحبك 💖") -->
+    <div class="page" id="page4">
         <div class="photo-card">
-
             <div class="photo">
-
-                <img
-                    src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg"
-                    alt="Barcelona"
-                >
-
+                <img src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png" alt="Photo">
             </div>
-
-
-            <div class="caption">
-                بحبك يبطتي 🌍❤️
-            </div>
-
+            <div class="caption">بحبك 💖</div>
         </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة الخامسة - الولد
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page5"
-    >
-
+    <!-- الصفحة 5 (الصورة الثانية) -->
+    <div class="page" id="page5">
         <div class="photo-card">
-
             <div class="photo">
-
-                <img
-                    src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg"
-                    alt="Photo"
-                >
-
+                <img src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg" alt="Photo">
             </div>
-
-
-            <div class="caption">
-                نور عيني ❤️
-            </div>
-
+            <div class="caption">دي حقيقة خلاص مافيهاش تغيير ✨</div>
         </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة السادسة - البوسة
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page6"
-    >
-
+    <!-- الصفحة 6 (الصورة الثالثة) -->
+    <div class="page" id="page6">
         <div class="photo-card">
-
             <div class="photo">
-
-                <img
-                    src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png"
-                    alt="Kiss"
-                >
-
+                <img src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg" alt="Photo">
             </div>
-
-
-            <div class="caption">
-                بوسة الاستيك أحلى 😋💗
-            </div>
-
+            <div class="caption">ربنا يخليكي ليا 💕</div>
         </div>
-
-
-        <button
-            class="next"
-            onclick="nextPage()"
-        >
-            Next ❤️️
-        </button>
-
+        <button class="next-btn" onclick="nextPage()">next 💕</button>
     </div>
 
-
-
-    <!-- ==============================================
-         الصفحة السابعة - النهاية
-    =============================================== -->
-
-    <div
-        class="page"
-        id="page7"
-    >
-
-        <div class="final">
-
-            <div class="final-small">
-                كل يوم بحبك أكتر من الي قبله ❤
-            </div>
-
-
-            <div class="final-big">
-                وبس كده.. بعدين هنكبره سوا يا عيوني ❤
-            </div>
-
+    <!-- الصفحة 7 (النهاية) -->
+    <div class="page" id="page7">
+        <div class="card">
+            <h2>Lovely 💞</h2>
+            <p style="font-size:16px; color:#ffccd5; margin-top:10px;">بحبك أوي حقك عليا لو زعلتك 🥺❤</p>
         </div>
-
     </div>
-
-
 </div>
 
+<!-- مشغل الصوت الثابت تحت -->
+<div class="fixed-music-player">
+    <div class="player-info">
+        <img class="player-img" src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg" alt="Song">
+        <span class="player-title">وأنت معايا 😍</span>
+    </div>
+    <div class="player-controls">
+        <span id="currentTime" style="font-size:11px; color:#ffccd5;">0:00</span>
+        <button id="playPauseBtn" onclick="toggleMusic()">▶</button>
+    </div>
+</div>
 
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-
-
-/* ==================================================
-   القلوب المتحركة
-================================================== */
-
+/* القلوب المتحركة */
 function createHeart() {
-
-    var heart =
-        document.createElement("div");
-
-
-    heart.className =
-        "floating-heart";
-
-
-    heart.innerHTML =
-        "❤️";
-
-
-    heart.style.left =
-        Math.random() * 100 + "vw";
-
-
-    heart.style.fontSize =
-        (12 + Math.random() * 18) + "px";
-
-
-    heart.style.animationDuration =
-        (3 + Math.random() * 3) + "s";
-
-
-    document
-        .getElementById("lockScreen")
-        .appendChild(heart);
-
-
-    setTimeout(function() {
-
-        heart.remove();
-
-    }, 6000);
-
+    var heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.getElementById("lockScreen").appendChild(heart);
+    setTimeout(function() { heart.remove(); }, 6000);
 }
+setInterval(createHeart, 500);
 
-
-setInterval(
-    createHeart,
-    500
-);
-
-
-
-/* ==================================================
-   فتح الموقع
-================================================== */
-
+/* فتح الموقع */
 function openWebsite() {
-
-    var password =
-        document
-        .getElementById("password")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    /*
-       الباسورد:
-       love_you_forever
-    */
-
-    if (
-        password !==
-        "love_you_forever"
-    ) {
-
-        alert(
-            "الباسورد غلط! ❤️"
-        );
-
+    var password = document.getElementById("password").value.trim().toLowerCase();
+    if (password !== "love") {
+        alert("الباسورد غلط! ❤️");
         return;
     }
-
-
-    var lock =
-        document.getElementById(
-            "lockScreen"
-        );
-
-
-    lock.style.opacity =
-        "0";
-
-
+    var lock = document.getElementById("lockScreen");
+    lock.style.opacity = "0";
     setTimeout(function() {
-
-
-        lock.style.display =
-            "none";
-
-
-        document
-            .getElementById("main")
-            .style.display =
-            "block";
-
-
-        /* تشغيل الأغنية */
-
-        var music =
-            document.getElementById(
-                "music"
-            );
-
-
-        music.play().catch(
-            function() {
-
-                /*
-                   لو المتصفح منع التشغيل
-                   التلقائي، زر Play
-                   الموجود في المشغل
-                   هيشغلها.
-                */
-
-            }
-        );
-
-
-        /* بدء كتابة الرسالة */
-
+        lock.style.display = "none";
+        document.getElementById("main").style.display = "block";
         startTyping();
-
-
+        
+        var music = document.getElementById("music");
+        music.play().then(() => {
+            document.getElementById("playPauseBtn").innerText = "⏸";
+        }).catch(() => {});
     }, 700);
-
 }
 
+/* تحكم الموسيقى */
+function toggleMusic() {
+    var music = document.getElementById("music");
+    var btn = document.getElementById("playPauseBtn");
+    if (music.paused) {
+        music.play();
+        btn.innerText = "⏸";
+    } else {
+        music.pause();
+        btn.innerText = "▶";
+    }
+}
 
+var music = document.getElementById("music");
+music.addEventListener("timeupdate", function() {
+    var mins = Math.floor(music.currentTime / 60);
+    var secs = Math.floor(music.currentTime % 60);
+    if(secs < 10) secs = "0" + secs;
+    document.getElementById("currentTime").innerText = mins + ":" + secs;
+});
 
-/* ==================================================
-   الرسالة التي تظهر حرف حرف
-================================================== */
-
-var message =
-"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗";
-
-
+/* الكتابة التلقائية */
+var message = "بحبك بكل حاجة في حياتي، وحقك عليا لو ضايقتك تعالى نفكر كل حاجة بينا هنا ونبدأ بداية جديده فرق الإحساس أجمل بيكتي وأنت معايا بشوفك أحلا الناس دي حقيقه خلاص مافيهاش تغيير باين حبيت أيوا أنا حبيت حبيته الدنيا اللي بتضحكلي معاك على طول..";
 function startTyping() {
-
-    var box =
-        document.getElementById(
-            "typing"
-        );
-
-
+    var box = document.getElementById("typing");
     box.innerHTML = "";
-
-
     var index = 0;
-
-
     function writeText() {
-
-
-        if (
-            index <
-            message.length
-        ) {
-
-
-            box.innerHTML +=
-                message.charAt(index);
-
-
+        if (index < message.length) {
+            box.innerHTML += message.charAt(index);
             index++;
-
-
-            setTimeout(
-                writeText,
-                35
-            );
-
+            setTimeout(writeText, 35);
         }
-
     }
-
-
     writeText();
-
 }
 
-
-
-/* ==================================================
-   زر Next
-================================================== */
-
+/* التنقل بين الصفحات */
 var currentPage = 1;
-
-
 function nextPage() {
-
-
-    var current =
-        document.getElementById(
-            "page" +
-            currentPage
-        );
-
-
-    current.classList.remove(
-        "active"
-    );
-
-
+    var current = document.getElementById("page" + currentPage);
+    current.classList.remove("active");
     currentPage++;
-
-
-    if (
-        currentPage > 7
-    ) {
-
-        currentPage = 7;
-
-    }
-
-
-    var next =
-        document.getElementById(
-            "page" +
-            currentPage
-        );
-
-
-    next.classList.add(
-        "active"
-    );
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
+    if (currentPage > 7) currentPage = 7;
+    var next = document.getElementById("page" + currentPage);
+    next.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-
-
-/* ==================================================
-   العداد
-================================================== */
-
-var startDate =
-    new Date(
-        "2026-05-07T00:00:00"
-    );
-
-
+/* العداد */
+var startDate = new Date("2025-10-03T00:00:00");
 function updateCounter() {
+    var now = new Date();
+    var difference = now - startDate;
+    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-
-    var now =
-        new Date();
-
-
-    var difference =
-        now -
-        startDate;
-
-
-    var days =
-        Math.floor(
-            difference /
-            (
-                1000 *
-                60 *
-                60 *
-                24
-            )
-        );
-
-
-    var hours =
-        Math.floor(
-
-            (
-                difference %
-                (
-                    1000 *
-                    60 *
-                    60 *
-                    24
-                )
-            )
-            /
-            (
-                1000 *
-                60 *
-                60
-            )
-
-        );
-
-
-    var minutes =
-        Math.floor(
-
-            (
-                difference %
-                (
-                    1000 *
-                    60 *
-                    60
-                )
-            )
-            /
-            (
-                1000 *
-                60
-            )
-
-        );
-
-
-    var seconds =
-        Math.floor(
-
-            (
-                difference %
-                (
-                    1000 *
-                    60
-                )
-            )
-            /
-            1000
-
-        );
-
-
-    document
-        .getElementById("days")
-        .innerText =
-        days;
-
-
-    document
-        .getElementById("hours")
-        .innerText =
-        hours;
-
-
-    document
-        .getElementById("minutes")
-        .innerText =
-        minutes;
-
-
-    document
-        .getElementById("seconds")
-        .innerText =
-        seconds;
-
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
 }
-
-
 updateCounter();
+setInterval(updateCounter, 1000);
 
-
-setInterval(
-    updateCounter,
-    1000
-);
-
-
-
-/* ==================================================
-   زر Enter
-================================================== */
-
-document
-    .getElementById("password")
-    .addEventListener(
-        "keydown",
-        function(event) {
-
-
-            if (
-                event.key ===
-                "Enter"
-            ) {
-
-                openWebsite();
-
-            }
-
-        }
-    );
-
+/* زر Enter */
+document.getElementById("password").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") openWebsite();
+});
 </script>
-
 </body>
-    </html>
+            </html>
     
