@@ -203,9 +203,9 @@
         </div>
     </div>
 
-    <!-- موسيقى الخلفية -->
+    <!-- موسيقى الخلفية المرفوعة محلياً -->
     <audio id="bg-music" loop>
-        <source src="https://cdns-preview--d.dzcdn.net/stream/c-deda73b22416805822b3b752945ba4d8-3.mp3" type="audio/mp3">
+        <source src="song.mp3" type="audio/mp3">
     </audio>
 
     <!-- المحتوى الأساسي بعد فتح القفل -->
@@ -226,7 +226,7 @@
                 <div class="time-unit"><span id="minutes">0</span><label>دقيقة</label></div>
                 <div class="time-unit"><span id="seconds">0</span><label>ثانية</label></div>
             </div>
-            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤️️</p>
+            <p style="font-size: 13px; margin-top: 10px; color: #ffccd5;">كل ثانية بتعدي وأنت في قلبي ❤</p>
         </div>
 
         <!-- تاريخ أول مرة قلتلك بحبك (14/6/2026) -->
@@ -286,7 +286,7 @@
         }
         setInterval(createHearts, 300);
 
-        // فتح القفل بالباسورد
+        // فتح القفل بالباسورد وتشغيل الأغنية المحلية
         function checkPassword() {
             const pass = document.getElementById('password-input').value.trim().toLowerCase();
             if (pass === 'love') {
