@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Our Love Story ❤</title>
+  <title>Our Love Story ❤</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
     
     body {
-      background: linear-gradient(rgba(20, 5, 8, 0.85), rgba(10, 2, 4, 0.95)), 
+      background: linear-gradient(rgba(100, 10, 30, 0.85), rgba(40, 5, 15, 0.95)), 
                   url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1000&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
@@ -38,98 +38,91 @@
 
     .container {
       width: 100%;
-      max-width: 440px;
-      background: rgba(30, 10, 15, 0.75);
+      max-width: 420px;
+      background: rgba(80, 15, 30, 0.75);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 75, 110, 0.3);
-      border-radius: 30px;
+      border: 1px solid rgba(255, 75, 110, 0.4);
+      border-radius: 35px;
       padding: 25px 20px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
       z-index: 2;
       text-align: center;
     }
 
+    /* شاشة القفل بالشكل المطلوب */
     .profile-img-box {
-      width: 80px;
-      height: 80px;
+      width: 75px;
+      height: 75px;
       border-radius: 50%;
       border: 2px solid #ff4b6e;
       overflow: hidden;
-      margin: 0 auto 10px;
-      box-shadow: 0 0 15px rgba(255, 75, 110, 0.5);
-      cursor: pointer;
-      position: relative;
+      margin: 0 auto 12px;
+      box-shadow: 0 0 15px rgba(255, 75, 110, 0.6);
     }
     .profile-img-box img { width: 100%; height: 100%; object-fit: cover; }
-    .profile-img-box:hover::after {
-      content: "تغيير";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      font-size: 11px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-    }
 
     .heart-lock-shape {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #ff4b6e, #590d22);
-      margin: 5px auto 15px;
+      width: 170px;
+      height: 150px;
+      background: linear-gradient(135deg, #ff4b6e, #600f25);
+      margin: 0 auto 15px;
       position: relative;
       transform: rotate(-45deg);
-      border-radius: 12px;
+      border-radius: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 25px rgba(255, 75, 110, 0.6);
-      animation: pulse 1.5s infinite alternate;
+      box-shadow: 0 0 30px rgba(255, 75, 110, 0.6);
     }
     .heart-lock-shape::before, .heart-lock-shape::after {
       content: "";
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #ff4b6e, #590d22);
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #ff4b6e, #600f25);
       border-radius: 50%;
       position: absolute;
     }
-    .heart-lock-shape::before { top: -50px; left: 0; }
-    .heart-lock-shape::after { left: 50px; top: 0; }
-    .heart-content { position: relative; z-index: 3; transform: rotate(45deg); font-size: 30px; }
-
-    @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(0.95); }
-      100% { transform: rotate(-45deg) scale(1.05); }
+    .heart-lock-shape::before { top: -75px; left: 0; }
+    .heart-lock-shape::after { left: 75px; top: 0; }
+    
+    .heart-inner-content {
+      position: relative;
+      z-index: 3;
+      transform: rotate(45deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
 
-    input[type="password"] {
+    .heart-inner-content h2 { font-size: 18px; color: #fff; margin-bottom: 2px; }
+    .heart-inner-content p { font-size: 11px; color: #ffccd5; margin-bottom: 8px; }
+
+    input[type="password"], input[type="text"], textarea {
       width: 85%;
-      padding: 12px;
-      border-radius: 25px;
+      padding: 10px;
+      border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.4);
       color: #fff;
-      text-align: center;
-      font-size: 14px;
-      margin: 10px 0;
+      text-align: right;
+      font-size: 12px;
       outline: none;
+      margin: 6px 0;
     }
+    input[type="password"] { text-align: center; border-radius: 20px; }
 
     .btn-main {
       background: linear-gradient(45deg, #ff4b6e, #800f2f);
       color: white;
       border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
-      font-size: 16px;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(255, 75, 110, 0.5);
-      width: 85%;
       transition: 0.3s;
-      margin-top: 5px;
     }
     .btn-main:hover { transform: scale(1.03); }
 
@@ -139,158 +132,138 @@
     .timer-box {
       display: flex;
       justify-content: space-around;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 10px;
       border-radius: 15px;
-      margin: 12px 0;
+      margin: 10px 0;
       border: 1px solid rgba(255, 75, 110, 0.2);
     }
-    .timer-item { font-size: 15px; font-weight: bold; color: #ffb703; text-align: center; }
+    .timer-item { font-size: 14px; font-weight: bold; color: #ffb703; text-align: center; }
     .timer-item span { display: block; font-size: 10px; color: #ffccd5; }
 
-    .editable {
-      cursor: pointer;
-      border-bottom: 1px dashed rgba(255, 75, 110, 0.5);
-      transition: 0.2s;
-    }
-    .editable:hover { color: #ffb703; background: rgba(255,75,110,0.1); }
-
-    .date-card {
-      background: rgba(0, 0, 0, 0.35);
+    .date-card, .edit-panel {
+      background: rgba(0, 0, 0, 0.3);
       border-right: 4px solid #ff4b6e;
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 8px;
     }
-    .date-card h4 { font-size: 13px; color: #ffb703; }
+    .date-card h4 { font-size: 12px; color: #ffb703; }
     .date-card p { font-size: 12px; color: #fff; margin-top: 2px; }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
     .photo-card {
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.3);
       border-radius: 12px;
       padding: 6px;
       text-align: center;
       border: 1px solid rgba(255, 75, 110, 0.2);
     }
-    .photo-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+    .photo-card img { width: 100%; height: 95px; object-fit: cover; border-radius: 8px; }
     .photo-card p { font-size: 11px; margin-top: 4px; color: #ffccd5; }
 
     .lark-player {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 18px;
-      padding: 12px;
-      margin-bottom: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 8px;
       border: 1px solid rgba(255, 75, 110, 0.3);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
-    .song-cover {
-      width: 55px;
-      height: 55px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1px solid #ff4b6e;
-    }
+    .song-cover { width: 45px; height: 45px; border-radius: 10px; object-fit: cover; border: 1px solid #ff4b6e; }
     .song-details { flex-grow: 1; }
-    .song-details h4 { font-size: 13px; color: #fff; }
-    .song-details p { font-size: 11px; color: #ffccd5; }
+    .song-details h4 { font-size: 12px; color: #fff; }
+    .song-details p { font-size: 10px; color: #ffccd5; }
 
-    .quiz-box {
-      background: rgba(0,0,0,0.4);
-      padding: 12px;
-      border-radius: 15px;
-      margin-bottom: 10px;
+    .quiz-box, .mood-box {
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 8px;
       border: 1px solid rgba(255, 75, 110, 0.2);
     }
     .quiz-option {
       display: block;
       width: 100%;
-      padding: 8px;
-      margin: 6px 0;
+      padding: 6px;
+      margin: 4px 0;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
+      border-radius: 8px;
       text-align: right;
-      font-size: 13px;
-    }
-    .quiz-feedback { margin-top: 6px; font-size: 12px; padding: 6px; border-radius: 6px; display: none; }
-
-    .mood-box {
-      background: rgba(0,0,0,0.4);
-      padding: 12px;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 75, 110, 0.2);
-    }
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      text-align: right;
-      font-size: 13px;
-      margin-top: 8px;
-      resize: none;
-      outline: none;
+      font-size: 12px;
     }
 
     .nav-controls {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 12px;
       gap: 10px;
     }
     .btn-next {
       background: linear-gradient(45deg, #ff4b6e, #800f2f);
       color: white;
       border: none;
-      padding: 10px 22px;
-      border-radius: 20px;
+      padding: 7px 20px;
+      border-radius: 18px;
       cursor: pointer;
       font-weight: bold;
-      flex-grow: 1;
+      font-size: 13px;
       transition: 0.3s;
-      font-size: 14px;
     }
     .btn-next:disabled { background: rgba(255, 255, 255, 0.15); cursor: not-allowed; }
+
+    .btn-save-changes {
+      background: #ffb703;
+      color: #000;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- مشغل الصوت لأغنية عمرو دياب -->
   <audio id="bgAudio" loop></audio>
 
   <div class="container">
     
+    <!-- شاشة القفل -->
     <div id="lockScreen">
-      <div class="profile-img-box" onclick="changeProfileImg()">
-        <img id="profileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Profile">
+      <div class="profile-img-box">
+        <img id="displayProfileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Profile">
       </div>
       <div class="heart-lock-shape">
-        <div class="heart-content">❤️</div>
+        <div class="heart-inner-content">
+          <h2>love</h2>
+          <p>❤ my everything</p>
+          <input type="password" id="passInput" placeholder="password">
+          <br>
+          <button class="btn-main" onclick="unlockSite()">❤ Unlock ❤</button>
+        </div>
       </div>
-      <h2 style="font-size: 20px; margin-bottom: 5px;">Our Love Story</h2>
-      <p style="font-size: 11px; color: #ffccd5; margin-bottom: 15px;">اضغط على كلمة السر واكتبها (افتراضي: Love_you_forever)</p>
-      
-      <input type="password" id="passInput" placeholder="كلمة السر...">
-      <br>
-      <button class="btn-main" onclick="unlockSite()">فتح الموقع ✨</button>
-      <p id="errorMsg" style="color: #ff85a1; margin-top: 8px; font-size: 11px;"></p>
+      <p id="errorMsg" style="color: #ff85a1; margin-top: 5px; font-size: 11px;"></p>
     </div>
 
+    <!-- المحتوى الرئيسي -->
     <div id="mainContent" style="display: none;">
       
+      <!-- الخطوة 1: العداد، الرسالة المكتوبة، والتواريخ -->
       <div class="step-card active" id="step1">
-        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 5px;">⏳ بقالنا مع بعض:</h3>
+        <h3 style="color: #ffb703; font-size: 14px; margin-bottom: 4px;">⏳ بقالنا مع بعض:</h3>
         <div class="timer-box">
           <div class="timer-item"><div id="days">0</div><span>يوم</span></div>
           <div class="timer-item"><div id="hours">0</div><span>ساعة</span></div>
@@ -298,66 +271,80 @@
           <div class="timer-item"><div id="seconds">0</div><span>ثانية</span></div>
         </div>
 
-        <div id="typedMessage" class="editable" onclick="editContent(this)" style="background: rgba(0,0,0,0.35); padding: 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; min-height: 50px; margin-bottom: 10px; border: 1px solid rgba(255,75,110,0.2);">بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة ومميزة بينا.. إنتِ أجمل حاجة حصلتلي ❤️</div>
+        <!-- رسالة بتكتب نفسها -->
+        <div id="typedMessage" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; font-size: 12px; line-height: 1.4; min-height: 40px; margin-bottom: 8px;"></div>
 
         <div class="date-card">
           <h4>💖 أول مرة هو قالي بحبك:</h4>
-          <p class="editable" onclick="editContent(this)">7 مايو 2026</p>
+          <p id="displayDate1">7 مايو 2026</p>
         </div>
         <div class="date-card">
           <h4>💞 أول مرة أنا قولتله بحبك:</h4>
-          <p class="editable" onclick="editContent(this)">8 مايو 2026</p>
+          <p id="displayDate2">8 مايو 2026</p>
         </div>
       </div>
 
+      <!-- الخطوة 2: الصور -->
       <div class="step-card" id="step2">
-        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">📸 ذكرياتنا الحلوة (اضغط على الصورة لتغييرها)</h3>
+        <h3 style="color: #ffb703; font-size: 14px; margin-bottom: 6px;">📸 ذكرياتنا الحلوة</h3>
         <div class="gallery">
           <div class="photo-card">
-            <img id="img1" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" onclick="changeImage('img1')" alt="Memory">
-            <p class="editable" onclick="editContent(this)">أول خروجة سوا ❤️</p>
+            <img id="displayImg1" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" alt="Memory">
+            <p id="displayCaption1">أول خروجة سوا ❤️</p>
           </div>
           <div class="photo-card">
-            <img id="img2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=300" onclick="changeImage('img2')" alt="Memory">
-            <p class="editable" onclick="editContent(this)">أحلى ضحكة مع بعض ✨</p>
+            <img id="displayImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=300" alt="Memory">
+            <p id="displayCaption2">أحلى ضحكة مع بعض ✨</p>
           </div>
         </div>
       </div>
 
+      <!-- الخطوة 3: الأغاني -->
       <div class="step-card" id="step3">
-        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 10px;">🎵 أغانينا المفضلة (اضغط لتغيير الرابط)</h3>
-        
+        <h3 style="color: #ffb703; font-size: 14px; margin-bottom: 6px;">🎵 أغانينا المفضلة</h3>
         <div class="lark-player">
           <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=150" class="song-cover" alt="Song">
           <div class="song-details">
-            <h4 class="editable" onclick="editContent(this)">أغنية الحكاية الأولى</h4>
-            <p class="editable" onclick="changeSongUrl()">اضغط هنا لتغيير رابط الأغنية (MP3)</p>
+            <h4 id="displaySongName">أغنية عمرو دياب</h4>
+            <p style="color: #ffccd5; font-size: 10px;">شغال دلوقتي 🎶</p>
           </div>
-          <button style="background: #ff4b6e; border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="document.getElementById('bgAudio').play()">▶</button>
         </div>
       </div>
 
+      <!-- الخطوة 4: الأسئلة -->
       <div class="step-card" id="step4">
-        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">🧩 اختبر حبك وذاكرتك!</h3>
+        <h3 style="color: #ffb703; font-size: 14px; margin-bottom: 6px;">🧩 اختبر حبك وذاكرتك</h3>
         <div class="quiz-box">
-          <p class="editable" onclick="editContent(this)" style="font-size: 13px; margin-bottom: 8px;">إيه أكتر حاجة بحبها في صفتي؟</p>
-          <button class="quiz-option editable" onclick="editContent(this)">حنيتك وطيبتك 🥰</button>
-          <button class="quiz-option editable" onclick="editContent(this)">عصبيتك 😤</button>
-          <div id="q1-msg" class="quiz-feedback"></div>
+          <p id="displayQuizQ" style="font-size: 12px; margin-bottom: 6px; font-weight: bold;">السؤال هنا...</p>
+          <div id="displayQuizOpt1" class="quiz-option">الإجابة الأولى</div>
+          <div id="displayQuizOpt2" class="quiz-option">الإجابة الثانية</div>
         </div>
       </div>
 
+      <!-- الخطوة 5: المشاعر والمود + خانات التعديل الشاملة -->
       <div class="step-card" id="step5">
-        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">💭 مزاجنا ومشاعرنا النهارده</h3>
-        <div class="mood-box">
-          <p style="font-size: 12px; color: #ffccd5;">اكتبي هنا حاسة باه:</p>
-          <textarea rows="4" placeholder="اكتبي إحساسك أو مزاجك النهارده..."></textarea>
+        <h3 style="color: #ffb703; font-size: 14px; margin-bottom: 4px;">💭 حاسين باه ومودنا إزاي؟</h3>
+        <div class="mood-box" style="margin-bottom: 6px;">
+          <textarea id="moodInput" rows="2" placeholder="اكتبي إحساسك ومزاجك النهارده..."></textarea>
+        </div>
+
+        <!-- لوحة التعديل السهلة المباشرة من غير Prompts -->
+        <div class="edit-panel">
+          <h4 style="color: #ffb703; font-size: 12px; margin-bottom: 4px;">⚙️ تعديل بيانات الموقع:</h4>
+          <input type="text" id="inputMsg" placeholder="تعديل الرسالة الرئيسية">
+          <input type="text" id="inputDate1" placeholder="تاريخ أول مرة قالك بحبك">
+          <input type="text" id="inputDate2" placeholder="تاريخ أول مرة قولتيله بحبك">
+          <input type="text" id="inputSongUrl" placeholder="رابط أغنية عمرو دياب (MP3)">
+          <input type="text" id="inputImg1" placeholder="رابط الصورة الأولى">
+          <input type="text" id="inputImg2" placeholder="رابط الصورة الثانية">
+          <button class="btn-save-changes" onclick="saveAllChanges()">حفظ التعديلات ✨</button>
         </div>
       </div>
 
+      <!-- أزرار التنقل باللغة الإنجليزية وبشكل رقيق -->
       <div class="nav-controls">
-        <button class="btn-next" id="prevBtn" onclick="changeStep(-1)">← Back</button>
-        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">Next ➔</button>
+        <button class="btn-next" id="prevBtn" onclick="changeStep(-1)">Back</button>
+        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">Next</button>
       </div>
 
     </div>
@@ -369,55 +356,84 @@
     let currentStep = 1;
     const totalSteps = 5;
 
-    // استرجاع الأغنية المحفوظة أو الافتراضية
-    let savedSong = localStorage.getItem("mySongUrl") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-    document.getElementById("bgAudio").src = savedSong;
+    // استرجاع البيانات المحفوظة أو القيم الافتراضية
+    let data = {
+      message: localStorage.getItem("myMsg") || "بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة ومميزة بينا.. إنتِ أجمل حاجة حصلتلي ❤️",
+      date1: localStorage.getItem("myDate1") || "7 مايو 2026",
+      date2: localStorage.getItem("myDate2") || "8 مايو 2026",
+      songUrl: localStorage.getItem("mySongUrl") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      img1: localStorage.getItem("myImg1") || "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300",
+      img2: localStorage.getItem("myImg2") || "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=300",
+      songName: "أغنية عمرو دياب 🎶"
+    };
+
+    // تطبيق البيانات على الصفحة
+    function loadDataToPage() {
+      document.getElementById("displayDate1").innerText = data.date1;
+      document.getElementById("displayDate2").innerText = data.date2;
+      document.getElementById("displayImg1").src = data.img1;
+      document.getElementById("displayImg2").src = data.img2;
+      document.getElementById("displaySongName").innerText = data.songName;
+      document.getElementById("bgAudio").src = data.songUrl;
+
+      // تعبئة خانات التعديل بالقيم الحالية
+      document.getElementById("inputMsg").value = data.message;
+      document.getElementById("inputDate1").value = data.date1;
+      document.getElementById("inputDate2").value = data.date2;
+      document.getElementById("inputSongUrl").value = data.songUrl;
+      document.getElementById("inputImg1").value = data.img1;
+      document.getElementById("inputImg2").value = data.img2;
+    }
 
     function unlockSite() {
       const pass = document.getElementById("passInput").value;
       if (pass === correctPassword) {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
+        loadDataToPage();
         document.getElementById("bgAudio").play();
         startTimer();
         updateStep();
+        startTypingEffect();
       } else {
         document.getElementById("errorMsg").innerText = "كلمة السر غلط يا قلبي، جرب تاني ❤️";
       }
     }
 
-    // التعديل المباشر لأي نص بمجرد الضغط عليه
-    function editContent(element) {
-      const newText = prompt("اكتبي التعديل الجديد:", element.innerText);
-      if (newText !== null && newText.trim() !== "") {
-        element.innerText = newText;
-      }
+    // حفظ التعديلات من الخانات مباشرة بدون برومبت
+    function saveAllChanges() {
+      data.message = document.getElementById("inputMsg").value;
+      data.date1 = document.getElementById("inputDate1").value;
+      data.date2 = document.getElementById("inputDate2").value;
+      data.songUrl = document.getElementById("inputSongUrl").value;
+      data.img1 = document.getElementById("inputImg1").value;
+      data.img2 = document.getElementById("inputImg2").value;
+
+      localStorage.setItem("myMsg", data.message);
+      localStorage.setItem("myDate1", data.date1);
+      localStorage.setItem("myDate2", data.date2);
+      localStorage.setItem("mySongUrl", data.songUrl);
+      localStorage.setItem("myImg1", data.img1);
+      localStorage.setItem("myImg2", data.img2);
+
+      loadDataToPage();
+      alert("تم حفظ التعديلات بنجاح يا حبيبتي! ✨❤️️");
     }
 
-    // تغيير صورة البروفايل
-    function changeProfileImg() {
-      const newImg = prompt("حطي رابط الصورة الجديد للبروفايل:", "");
-      if (newImg) {
-        document.getElementById("profileImg").src = newImg;
+    // تأثير كتابة الرسالة حرف بحرف
+    function startTypingEffect() {
+      let i = 0;
+      const speed = 40;
+      const target = document.getElementById("typedMessage");
+      target.innerText = "";
+      function type() {
+        if (i < data.message.length) {
+          target.innerText += data.message.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
       }
-    }
-
-    // تغيير صور الذكريات
-    function changeImage(imgId) {
-      const newImg = prompt("حطي رابط الصورة الجديدة:", "");
-      if (newImg) {
-        document.getElementById(imgId).src = newImg;
-      }
-    }
-
-    // تغيير رابط الأغنية
-    function changeSongUrl() {
-      const newUrl = prompt("حطي رابط الأغنية الجديد (صيغة MP3):", savedSong);
-      if (newUrl) {
-        localStorage.setItem("mySongUrl", newUrl);
-        document.getElementById("bgAudio").src = newUrl;
-        alert("تم تغيير الأغنية بنجاح! ✨");
-      }
+      type();
     }
 
     function startTimer() {
@@ -447,6 +463,7 @@
       document.getElementById('nextBtn').disabled = (currentStep === totalSteps);
     }
 
+    // تساقط القلوب
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart-bg");
@@ -458,5 +475,5 @@
     }, 400);
   </script>
 </body>
-      </html>
+  </html>
   
