@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Our Romantic Story 💕</title>
+  <title id="pageTitle">Our Love Story ❤</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
     
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+      background: linear-gradient(rgba(20, 5, 8, 0.85), rgba(10, 2, 4, 0.95)), 
                   url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1000&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
@@ -26,7 +26,7 @@
       position: fixed;
       top: -10vh;
       font-size: 20px;
-      color: rgba(255, 77, 109, 0.8);
+      color: rgba(255, 75, 110, 0.7);
       animation: fall 5s linear infinite;
       z-index: 1;
       pointer-events: none;
@@ -38,73 +38,87 @@
 
     .container {
       width: 100%;
-      max-width: 420px;
-      background: rgba(20, 10, 15, 0.65);
+      max-width: 440px;
+      background: rgba(30, 10, 15, 0.75);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 182, 193, 0.3);
-      border-radius: 25px;
+      border: 1px solid rgba(255, 75, 110, 0.3);
+      border-radius: 30px;
       padding: 25px 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
       z-index: 2;
       text-align: center;
     }
 
-    .heart-lock-shape {
-      width: 130px;
-      height: 130px;
-      background: linear-gradient(135deg, #ff4d6d, #800f2f);
-      margin: 10px auto 20px;
+    .profile-img-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #ff4b6e;
+      overflow: hidden;
+      margin: 0 auto 10px;
+      box-shadow: 0 0 15px rgba(255, 75, 110, 0.5);
+      cursor: pointer;
       position: relative;
-      transform: rotate(-45deg);
-      border-radius: 15px;
+    }
+    .profile-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-img-box:hover::after {
+      content: "تغيير";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      font-size: 11px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
-      animation: pulse 1.5s infinite alternate;
-      cursor: pointer;
+      color: #fff;
     }
-    .heart-lock-shape::before,
-    .heart-lock-shape::after {
+
+    .heart-lock-shape {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #ff4b6e, #590d22);
+      margin: 5px auto 15px;
+      position: relative;
+      transform: rotate(-45deg);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(255, 75, 110, 0.6);
+      animation: pulse 1.5s infinite alternate;
+    }
+    .heart-lock-shape::before, .heart-lock-shape::after {
       content: "";
-      width: 130px;
-      height: 130px;
-      background: linear-gradient(135deg, #ff4d6d, #800f2f);
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #ff4b6e, #590d22);
       border-radius: 50%;
       position: absolute;
     }
-    .heart-lock-shape::before { top: -65px; left: 0; }
-    .heart-lock-shape::after { left: 65px; top: 0; }
-    
-    .heart-content {
-      position: relative;
-      z-index: 3;
-      transform: rotate(45deg);
-      font-size: 35px;
-    }
+    .heart-lock-shape::before { top: -50px; left: 0; }
+    .heart-lock-shape::after { left: 50px; top: 0; }
+    .heart-content { position: relative; z-index: 3; transform: rotate(45deg); font-size: 30px; }
 
     @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(0.98); }
+      0% { transform: rotate(-45deg) scale(0.95); }
       100% { transform: rotate(-45deg) scale(1.05); }
     }
 
-    input[type="password"], input[type="text"], textarea {
+    input[type="password"] {
       width: 85%;
       padding: 12px;
-      border-radius: 15px;
+      border-radius: 25px;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       color: #fff;
-      text-align: right;
+      text-align: center;
       font-size: 14px;
       margin: 10px 0;
       outline: none;
     }
 
-    input[type="password"] { text-align: center; border-radius: 25px; }
-
     .btn-main {
-      background: linear-gradient(45deg, #ff4d6d, #c9184a);
+      background: linear-gradient(45deg, #ff4b6e, #800f2f);
       color: white;
       border: none;
       padding: 12px 30px;
@@ -112,12 +126,123 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
+      box-shadow: 0 4px 15px rgba(255, 75, 110, 0.5);
       width: 85%;
       transition: 0.3s;
       margin-top: 5px;
     }
     .btn-main:hover { transform: scale(1.03); }
+
+    .step-card { display: none; text-align: right; }
+    .step-card.active { display: block; }
+
+    .timer-box {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 12px;
+      border-radius: 15px;
+      margin: 12px 0;
+      border: 1px solid rgba(255, 75, 110, 0.2);
+    }
+    .timer-item { font-size: 15px; font-weight: bold; color: #ffb703; text-align: center; }
+    .timer-item span { display: block; font-size: 10px; color: #ffccd5; }
+
+    .editable {
+      cursor: pointer;
+      border-bottom: 1px dashed rgba(255, 75, 110, 0.5);
+      transition: 0.2s;
+    }
+    .editable:hover { color: #ffb703; background: rgba(255,75,110,0.1); }
+
+    .date-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-right: 4px solid #ff4b6e;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .date-card h4 { font-size: 13px; color: #ffb703; }
+    .date-card p { font-size: 12px; color: #fff; margin-top: 2px; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .photo-card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 6px;
+      text-align: center;
+      border: 1px solid rgba(255, 75, 110, 0.2);
+    }
+    .photo-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+    .photo-card p { font-size: 11px; margin-top: 4px; color: #ffccd5; }
+
+    .lark-player {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 75, 110, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .song-cover {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid #ff4b6e;
+    }
+    .song-details { flex-grow: 1; }
+    .song-details h4 { font-size: 13px; color: #fff; }
+    .song-details p { font-size: 11px; color: #ffccd5; }
+
+    .quiz-box {
+      background: rgba(0,0,0,0.4);
+      padding: 12px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 75, 110, 0.2);
+    }
+    .quiz-option {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: right;
+      font-size: 13px;
+    }
+    .quiz-feedback { margin-top: 6px; font-size: 12px; padding: 6px; border-radius: 6px; display: none; }
+
+    .mood-box {
+      background: rgba(0,0,0,0.4);
+      padding: 12px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 75, 110, 0.2);
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      text-align: right;
+      font-size: 13px;
+      margin-top: 8px;
+      resize: none;
+      outline: none;
+    }
 
     .nav-controls {
       display: flex;
@@ -126,145 +251,46 @@
       gap: 10px;
     }
     .btn-next {
-      background: #ff4d6d;
+      background: linear-gradient(45deg, #ff4b6e, #800f2f);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 20px;
       cursor: pointer;
       font-weight: bold;
       flex-grow: 1;
       transition: 0.3s;
+      font-size: 14px;
     }
-    .btn-next:disabled { background: rgba(255, 255, 255, 0.2); cursor: not-allowed; }
-
-    .step-card { display: none; }
-    .step-card.active { display: block; }
-
-    .date-card {
-      background: rgba(0, 0, 0, 0.3);
-      border-right: 4px solid #ff4d6d;
-      padding: 12px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      text-align: right;
-    }
-    .date-card h4 { font-size: 15px; color: #ffb703; }
-    .date-card p { font-size: 13px; color: #fff; margin-top: 3px; }
-
-    .timer-box {
-      display: flex;
-      justify-content: space-around;
-      background: rgba(0,0,0,0.3);
-      padding: 12px;
-      border-radius: 15px;
-      margin: 15px 0;
-    }
-    .timer-item { font-size: 16px; font-weight: bold; color: #ffb703; }
-    .timer-item span { display: block; font-size: 10px; color: #fff; }
-
-    .song-card {
-      display: flex;
-      align-items: center;
-      background: rgba(0,0,0,0.3);
-      padding: 10px;
-      border-radius: 15px;
-      margin-bottom: 10px;
-    }
-    .song-info { flex-grow: 1; text-align: right; }
-    .song-info h4 { font-size: 14px; }
-    .song-info p { font-size: 11px; color: #ffb3c1; }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 15px;
-    }
-    .photo-card {
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      padding: 5px;
-      text-align: center;
-    }
-    .photo-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
-    .photo-card p { font-size: 11px; margin-top: 5px; color: #ffb3c1; }
-
-    .quiz-box {
-      background: rgba(0,0,0,0.3);
-      padding: 15px;
-      border-radius: 15px;
-      text-align: right;
-      margin-bottom: 15px;
-    }
-    .quiz-option {
-      display: block;
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      text-align: right;
-    }
-    .quiz-feedback {
-      margin-top: 10px;
-      font-size: 13px;
-      padding: 8px;
-      border-radius: 8px;
-      display: none;
-    }
+    .btn-next:disabled { background: rgba(255, 255, 255, 0.15); cursor: not-allowed; }
   </style>
 </head>
 <body>
 
+  <audio id="bgAudio" loop></audio>
+
   <div class="container">
-    <!-- 1. شاشة القفل بقلب رومانسي -->
+    
     <div id="lockScreen">
-      <div class="heart-lock-shape" onclick="triggerSecretAdmin()">
-        <div class="heart-content" id="lockIcon">🔒</div>
+      <div class="profile-img-box" onclick="changeProfileImg()">
+        <img id="profileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Profile">
       </div>
-      <h2 id="mainTitleText" style="margin-top: 35px; font-size: 22px; cursor: pointer;">Our Romantic Story 💕</h2>
-      <p style="font-size: 12px; color: #ffb3c1; margin-top: 5px;">ادخل كلمة السر لفتح عالمنا الخاص</p>
-      <input type="password" id="passInput" placeholder="Password">
-      <br>
-      <button class="btn-main" onclick="unlock()">فتح 💕</button>
-      <p id="error" style="color: #ff85a1; margin-top: 10px; font-size: 12px;"></p>
-    </div>
-
-    <!-- لوحة التعديل المخفية السرية -->
-    <div id="adminPanel" style="display: none; text-align: right;">
-      <h3 style="color: #ffb703; margin-bottom: 10px; text-align: center;">⚙️ لوحة التحكم السرية</h3>
-      <p style="font-size: 11px; color: #ffb3c1; margin-bottom: 10px; text-align: center;">عدل براحتك واضغط حفظ</p>
+      <div class="heart-lock-shape">
+        <div class="heart-content">❤️</div>
+      </div>
+      <h2 style="font-size: 20px; margin-bottom: 5px;">Our Love Story</h2>
+      <p style="font-size: 11px; color: #ffccd5; margin-bottom: 15px;">اضغط على كلمة السر واكتبها (افتراضي: Love_you_forever)</p>
       
-      <label style="font-size: 12px;">اسم أو عنوان الموقع:</label>
-      <input type="text" id="editTitle" placeholder="Our Romantic Story 💕">
-
-      <label style="font-size: 12px;">رمز شكل القلب (ايقونة):</label>
-      <input type="text" id="editHeartIcon" placeholder="❤️ أو 💖 أو 🔒">
-
-      <label style="font-size: 12px;">رسالة الصفحة الرئيسية:</label>
-      <textarea id="editMessage" rows="3">بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️️</textarea>
-
-      <label style="font-size: 12px;">رابط الأغنية (MP3):</label>
-      <input type="text" id="editSongUrl" placeholder="رابط الأغنية">
-
-      <button class="btn-main" style="width: 100%; margin-top: 10px;" onclick="saveChanges()">حفظ التعديلات ✨</button>
-      <button class="btn-main" style="width: 100%; margin-top: 5px; background: rgba(255,255,255,0.2);" onclick="closeAdmin()">إلغاء ❌</button>
+      <input type="password" id="passInput" placeholder="كلمة السر...">
+      <br>
+      <button class="btn-main" onclick="unlockSite()">فتح الموقع ✨</button>
+      <p id="errorMsg" style="color: #ff85a1; margin-top: 8px; font-size: 11px;"></p>
     </div>
 
-    <!-- 2. المحتوى الرئيسي بتنقل Next -->
     <div id="mainContent" style="display: none;">
       
-      <h2 id="contentHeaderTitle" style="font-size: 18px; color: #ffb3c1; margin-bottom: 15px;">Our Romantic Story 💕</h2>
-
-      <!-- الخطوة 1: قصتنا والعداد -->
       <div class="step-card active" id="step1">
-        <h3>بداية حكايتنا 💕</h3>
-        <p style="font-size: 12px; color: #ffb3c1; margin-top: 4px;">7 مايو 2026</p>
-
+        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 5px;">⏳ بقالنا مع بعض:</h3>
         <div class="timer-box">
           <div class="timer-item"><div id="days">0</div><span>يوم</span></div>
           <div class="timer-item"><div id="hours">0</div><span>ساعة</span></div>
@@ -272,170 +298,126 @@
           <div class="timer-item"><div id="seconds">0</div><span>ثانية</span></div>
         </div>
 
-        <div id="displayMessage" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; text-align: right; line-height: 1.6; font-size: 14px;">
-          بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️
+        <div id="typedMessage" class="editable" onclick="editContent(this)" style="background: rgba(0,0,0,0.35); padding: 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; min-height: 50px; margin-bottom: 10px; border: 1px solid rgba(255,75,110,0.2);">بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة ومميزة بينا.. إنتِ أجمل حاجة حصلتلي ❤️</div>
+
+        <div class="date-card">
+          <h4>💖 أول مرة هو قالي بحبك:</h4>
+          <p class="editable" onclick="editContent(this)">7 مايو 2026</p>
+        </div>
+        <div class="date-card">
+          <h4>💞 أول مرة أنا قولتله بحبك:</h4>
+          <p class="editable" onclick="editContent(this)">8 مايو 2026</p>
         </div>
       </div>
 
-      <!-- الخطوة 2: تواريخنا المميزة -->
       <div class="step-card" id="step2">
-        <h3 style="margin-bottom: 15px;">📅 تواريخ تميزنا</h3>
-
-        <div class="date-card">
-          <h4>❤️ بداية قصتنا (Anniversary)</h4>
-          <p>7 مايو 2026</p>
-        </div>
-
-        <div class="date-card">
-          <h4>🎂 عيد ميلادك (Birthday)</h4>
-          <p>15 أكتوبر</p>
-        </div>
-
-        <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 15px; margin-top: 15px;">
-          <h4 style="color: #ffb703; font-size: 14px;">⏳ باقي على عيد ميلاده الجاي:</h4>
-          <div class="timer-box">
-            <div class="timer-item"><div id="b_days">0</div><span>يوم</span></div>
-            <div class="timer-item"><div id="b_hours">0</div><span>ساعة</span></div>
-            <div class="timer-item"><div id="b_mins">0</div><span>دقيقة</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- الخطوة 3: أغانينا -->
-      <div class="step-card" id="step3">
-        <h3 style="margin-bottom: 15px;">🎵 قائمة أغانينا</h3>
-        <audio id="mainAudio" controls style="width: 100%; margin-bottom: 15px;"></audio>
-
-        <div class="song-card">
-          <div class="song-info">
-            <h4>أغنية الحكاية</h4>
-            <p>الموسيقى الخاصة بالموقع</p>
-          </div>
-          <button class="btn-next" style="padding: 6px 12px; font-size: 12px; flex-grow: 0;" onclick="playCurrentSong()">شغل ▶</button>
-        </div>
-      </div>
-
-      <!-- الخطوة 4: صورنا -->
-      <div class="step-card" id="step4">
-        <h3 style="margin-bottom: 10px;">📸 ذكرياتنا المصورة</h3>
+        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">📸 ذكرياتنا الحلوة (اضغط على الصورة لتغييرها)</h3>
         <div class="gallery">
           <div class="photo-card">
-            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" alt="Memory">
-            <p>أول خروجة سوا ❤️</p>
+            <img id="img1" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" onclick="changeImage('img1')" alt="Memory">
+            <p class="editable" onclick="editContent(this)">أول خروجة سوا ❤️</p>
+          </div>
+          <div class="photo-card">
+            <img id="img2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=300" onclick="changeImage('img2')" alt="Memory">
+            <p class="editable" onclick="editContent(this)">أحلى ضحكة مع بعض ✨</p>
           </div>
         </div>
       </div>
 
-      <!-- الخطوة 5: الأسئلة -->
-      <div class="step-card" id="step5">
-        <h3 style="margin-bottom: 15px;">🧩 اختبر ذاكرتك!</h3>
+      <div class="step-card" id="step3">
+        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 10px;">🎵 أغانينا المفضلة (اضغط لتغيير الرابط)</h3>
+        
+        <div class="lark-player">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=150" class="song-cover" alt="Song">
+          <div class="song-details">
+            <h4 class="editable" onclick="editContent(this)">أغنية الحكاية الأولى</h4>
+            <p class="editable" onclick="changeSongUrl()">اضغط هنا لتغيير رابط الأغنية (MP3)</p>
+          </div>
+          <button style="background: #ff4b6e; border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="document.getElementById('bgAudio').play()">▶</button>
+        </div>
+      </div>
+
+      <div class="step-card" id="step4">
+        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">🧩 اختبر حبك وذاكرتك!</h3>
         <div class="quiz-box">
-          <p style="font-size: 14px; margin-bottom: 10px;">1. إيه أكلتنا المفضلة؟</p>
-          <button class="quiz-option" onclick="answer(1, false, 'q1-msg')">بيتزا 🍕</button>
-          <button class="quiz-option" onclick="answer(1, true, 'q1-msg')">المعكرونة بالبشاميل 🍝</button>
+          <p class="editable" onclick="editContent(this)" style="font-size: 13px; margin-bottom: 8px;">إيه أكتر حاجة بحبها في صفتي؟</p>
+          <button class="quiz-option editable" onclick="editContent(this)">حنيتك وطيبتك 🥰</button>
+          <button class="quiz-option editable" onclick="editContent(this)">عصبيتك 😤</button>
           <div id="q1-msg" class="quiz-feedback"></div>
         </div>
       </div>
 
-      <!-- أزرار التنقل بالأمام والخلف -->
+      <div class="step-card" id="step5">
+        <h3 style="color: #ffb703; font-size: 16px; margin-bottom: 8px;">💭 مزاجنا ومشاعرنا النهارده</h3>
+        <div class="mood-box">
+          <p style="font-size: 12px; color: #ffccd5;">اكتبي هنا حاسة باه:</p>
+          <textarea rows="4" placeholder="اكتبي إحساسك أو مزاجك النهارده..."></textarea>
+        </div>
+      </div>
+
       <div class="nav-controls">
-        <button class="btn-next" id="prevBtn" onclick="changeStep(-1)">⬅️ السابق</button>
-        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">التالي ➡️</button>
+        <button class="btn-next" id="prevBtn" onclick="changeStep(-1)">← Back</button>
+        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">Next ➔</button>
       </div>
 
     </div>
   </div>
 
   <script>
-    const correctPass = "Love_you_forever";
+    const correctPassword = "Love_you_forever";
     const startDate = new Date("2026-05-07T00:00:00").getTime();
-    const nextBirthday = new Date("2026-10-15T00:00:00").getTime();
-
     let currentStep = 1;
     const totalSteps = 5;
 
-    let siteData = {
-      title: localStorage.getItem("siteTitle") || "Our Romantic Story 💕",
-      heartIcon: localStorage.getItem("siteHeart") || "🔒",
-      message: localStorage.getItem("siteMsg") || "بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️",
-      songUrl: localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    };
+    // استرجاع الأغنية المحفوظة أو الافتراضية
+    let savedSong = localStorage.getItem("mySongUrl") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+    document.getElementById("bgAudio").src = savedSong;
 
-    function applySavedData() {
-      document.getElementById("pageTitle").innerText = siteData.title;
-      document.getElementById("mainTitleText").innerText = siteData.title;
-      document.getElementById("contentHeaderTitle").innerText = siteData.title;
-      document.getElementById("lockIcon").innerText = siteData.heartIcon;
-      document.getElementById("displayMessage").innerText = siteData.message;
-      
-      document.getElementById("editTitle").value = siteData.title;
-      document.getElementById("editHeartIcon").value = siteData.heartIcon;
-      document.getElementById("editMessage").value = siteData.message;
-      document.getElementById("editSongUrl").value = siteData.songUrl;
-    }
-    applySavedData();
-
-    let tapCount = 0;
-    function triggerSecretAdmin() {
-      tapCount++;
-      if (tapCount >= 3) {
-        tapCount = 0;
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("adminPanel").style.display = "block";
-      }
-    }
-
-    document.getElementById("mainTitleText").addEventListener("click", () => {
-      tapCount++;
-      if (tapCount >= 3) {
-        tapCount = 0;
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("adminPanel").style.display = "block";
-      }
-    });
-
-    function closeAdmin() {
-      document.getElementById("adminPanel").style.display = "none";
-      document.getElementById("lockScreen").style.display = "block";
-    }
-
-    function saveChanges() {
-      localStorage.setItem("siteTitle", document.getElementById("editTitle").value);
-      localStorage.setItem("siteHeart", document.getElementById("editHeartIcon").value);
-      localStorage.setItem("siteMsg", document.getElementById("editMessage").value);
-      localStorage.setItem("siteSong", document.getElementById("editSongUrl").value);
-      
-      alert("تم الحفظ بنجاح يا فنان! ✨");
-      location.reload();
-    }
-
-    function unlock() {
+    function unlockSite() {
       const pass = document.getElementById("passInput").value;
-      if (pass === correctPass) {
+      if (pass === correctPassword) {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgAudio").play();
         startTimer();
-        startBirthdayTimer();
-        playCurrentSong();
         updateStep();
       } else {
-        document.getElementById("error").innerText = "كلمة السر مش صح، جرب تاني يا سكر ❤️";
+        document.getElementById("errorMsg").innerText = "كلمة السر غلط يا قلبي، جرب تاني ❤️";
       }
     }
 
-    function changeStep(direction) {
-      currentStep += direction;
-      if (currentStep < 1) currentStep = 1;
-      if (currentStep > totalSteps) currentStep = totalSteps;
-      updateStep();
+    // التعديل المباشر لأي نص بمجرد الضغط عليه
+    function editContent(element) {
+      const newText = prompt("اكتبي التعديل الجديد:", element.innerText);
+      if (newText !== null && newText.trim() !== "") {
+        element.innerText = newText;
+      }
     }
 
-    function updateStep() {
-      document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
-      document.getElementById('step' + currentStep).classList.add('active');
+    // تغيير صورة البروفايل
+    function changeProfileImg() {
+      const newImg = prompt("حطي رابط الصورة الجديد للبروفايل:", "");
+      if (newImg) {
+        document.getElementById("profileImg").src = newImg;
+      }
+    }
 
-      document.getElementById('prevBtn').disabled = (currentStep === 1);
-      document.getElementById('nextBtn').disabled = (currentStep === totalSteps);
+    // تغيير صور الذكريات
+    function changeImage(imgId) {
+      const newImg = prompt("حطي رابط الصورة الجديدة:", "");
+      if (newImg) {
+        document.getElementById(imgId).src = newImg;
+      }
+    }
+
+    // تغيير رابط الأغنية
+    function changeSongUrl() {
+      const newUrl = prompt("حطي رابط الأغنية الجديد (صيغة MP3):", savedSong);
+      if (newUrl) {
+        localStorage.setItem("mySongUrl", newUrl);
+        document.getElementById("bgAudio").src = newUrl;
+        alert("تم تغيير الأغنية بنجاح! ✨");
+      }
     }
 
     function startTimer() {
@@ -451,48 +433,30 @@
       }, 1000);
     }
 
-    function startBirthdayTimer() {
-      setInterval(() => {
-        const now = new Date().getTime();
-        const diff = nextBirthday - now;
-        if (diff > 0) {
-          document.getElementById("b_days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-          document.getElementById("b_hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          document.getElementById("b_mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        }
-      }, 1000);
+    function changeStep(dir) {
+      currentStep += dir;
+      if (currentStep < 1) currentStep = 1;
+      if (currentStep > totalSteps) currentStep = totalSteps;
+      updateStep();
     }
 
-    function playCurrentSong() {
-      const audio = document.getElementById("mainAudio");
-      audio.src = localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-      audio.play();
-    }
-
-    function answer(qNum, isCorrect, msgId) {
-      const msgBox = document.getElementById(msgId);
-      msgBox.style.display = "block";
-      if (isCorrect) {
-        msgBox.style.background = "rgba(40, 167, 69, 0.4)";
-        msgBox.style.color = "#85e3a5";
-        msgBox.innerHTML = "صح! شاطر.. كنت عارفة إنك هتفتكرها 💕✨";
-      } else {
-        msgBox.style.background = "rgba(220, 53, 69, 0.4)";
-        msgBox.style.color = "#ff9999";
-        msgBox.innerHTML = "إزاي متذكرش دي؟! زعلت منك 😤❤️ جرب تاني!";
-      }
+    function updateStep() {
+      document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
+      document.getElementById('step' + currentStep).classList.add('active');
+      document.getElementById('prevBtn').disabled = (currentStep === 1);
+      document.getElementById('nextBtn').disabled = (currentStep === totalSteps);
     }
 
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart-bg");
-      heart.innerHTML = "💖";
+      heart.innerHTML = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = Math.random() * 3 + 2 + "s";
       document.body.appendChild(heart);
-      setTimeout(() => { heart.remove(); }, 5000);
-    }, 350);
+      setTimeout(() => heart.remove(), 5000);
+    }, 400);
   </script>
 </body>
-  </html>
+      </html>
   
