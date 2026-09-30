@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Romantic Story 💕</title>
+  <title id="pageTitle">Our Romantic Story 💕</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
     
@@ -22,7 +22,6 @@
       overflow-x: hidden;
     }
 
-    /* تساقط القلوب */
     .heart-bg {
       position: fixed;
       top: -10vh;
@@ -50,7 +49,6 @@
       text-align: center;
     }
 
-    /* تصميم شاشة القفل على شكل قلب */
     .heart-lock-shape {
       width: 130px;
       height: 130px;
@@ -89,18 +87,20 @@
       100% { transform: rotate(-45deg) scale(1.05); }
     }
 
-    input[type="password"] {
+    input[type="password"], input[type="text"], textarea {
       width: 85%;
       padding: 12px;
-      border-radius: 25px;
+      border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.3);
       background: rgba(0, 0, 0, 0.4);
       color: #fff;
-      text-align: center;
-      font-size: 16px;
-      margin: 15px 0;
+      text-align: right;
+      font-size: 14px;
+      margin: 10px 0;
       outline: none;
     }
+
+    input[type="password"] { text-align: center; border-radius: 25px; }
 
     .btn-main {
       background: linear-gradient(45deg, #ff4d6d, #c9184a);
@@ -114,10 +114,10 @@
       box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
       width: 85%;
       transition: 0.3s;
+      margin-top: 5px;
     }
     .btn-main:hover { transform: scale(1.03); }
 
-    /* أزرار التنقل التالي والسابق */
     .nav-controls {
       display: flex;
       justify-content: space-between;
@@ -140,7 +140,6 @@
     .step-card { display: none; }
     .step-card.active { display: block; }
 
-    /* كروت التفاصيل */
     .date-card {
       background: rgba(0, 0, 0, 0.3);
       border-right: 4px solid #ff4d6d;
@@ -171,7 +170,6 @@
       border-radius: 15px;
       margin-bottom: 10px;
     }
-    .song-img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; margin-left: 10px; }
     .song-info { flex-grow: 1; text-align: right; }
     .song-info h4 { font-size: 14px; }
     .song-info p { font-size: 11px; color: #ffb3c1; }
@@ -224,10 +222,10 @@
   <div class="container">
     <!-- 1. شاشة القفل بقلب رومانسي -->
     <div id="lockScreen">
-      <div class="heart-lock-shape">
-        <div class="heart-content">🔒</div>
+      <div class="heart-lock-shape" id="secretTrigger" onclick="triggerSecretAdmin()">
+        <div class="heart-content" id="lockIcon">🔒</div>
       </div>
-      <h2 style="margin-top: 35px; font-size: 22px;">Our Romantic Story 💕</h2>
+      <h2 id="mainTitleText" style="margin-top: 35px; font-size: 22px; cursor: pointer;">Our Romantic Story 💕</h2>
       <p style="font-size: 12px; color: #ffb3c1; margin-top: 5px;">ادخل كلمة السر لفتح عالمنا الخاص</p>
       <input type="password" id="passInput" placeholder="Password">
       <br>
@@ -235,10 +233,31 @@
       <p id="error" style="color: #ff85a1; margin-top: 10px; font-size: 12px;"></p>
     </div>
 
+    <!-- لوحة التعديل المخفية السرية -->
+    <div id="adminPanel" style="display: none; text-align: right;">
+      <h3 style="color: #ffb703; margin-bottom: 10px; text-align: center;">⚙️ لوحة التحكم السرية</h3>
+      <p style="font-size: 11px; color: #ffb3c1; margin-bottom: 10px; text-align: center;">عدل براحتك واضغط حفظ</p>
+      
+      <label style="font-size: 12px;">اسم أو عنوان الموقع:</label>
+      <input type="text" id="editTitle" placeholder="Our Romantic Story 💕">
+
+      <label style="font-size: 12px;">رمز شكل القلب (ايقونة):</label>
+      <input type="text" id="editHeartIcon" placeholder="❤️ أو 💖 أو 🔒">
+
+      <label style="font-size: 12px;">رسالة الصفحة الرئيسية:</label>
+      <textarea id="editMessage" rows="3">بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️</textarea>
+
+      <label style="font-size: 12px;">رابط الأغنية (MP3):</label>
+      <input type="text" id="editSongUrl" placeholder="رابط الأغنية">
+
+      <button class="btn-main" style="width: 100%; margin-top: 10px;" onclick="saveChanges()">حفظ التعديلات ✨</button>
+      <button class="btn-main" style="width: 100%; margin-top: 5px; background: rgba(255,255,255,0.2);" onclick="closeAdmin()">إلغاء ❌</button>
+    </div>
+
     <!-- 2. المحتوى الرئيسي بتنقل Next -->
     <div id="mainContent" style="display: none;">
       
-      <h2 style="font-size: 18px; color: #ffb3c1; margin-bottom: 15px;">Our Romantic Story 💕</h2>
+      <h2 id="contentHeaderTitle" style="font-size: 18px; color: #ffb3c1; margin-bottom: 15px;">Our Romantic Story 💕</h2>
 
       <!-- الخطوة 1: قصتنا والعداد -->
       <div class="step-card active" id="step1">
@@ -252,7 +271,7 @@
           <div class="timer-item"><div id="seconds">0</div><span>ثانية</span></div>
         </div>
 
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; text-align: right; line-height: 1.6; font-size: 14px;">
+        <div id="displayMessage" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; text-align: right; line-height: 1.6; font-size: 14px;">
           بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️
         </div>
       </div>
@@ -268,7 +287,7 @@
 
         <div class="date-card">
           <h4>🎂 عيد ميلادك (Birthday)</h4>
-          <p>تاريخ عيد الميلاد هنا (مثال: 15 أكتوبر)</p>
+          <p>15 أكتوبر</p>
         </div>
 
         <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 15px; margin-top: 15px;">
@@ -287,12 +306,11 @@
         <audio id="mainAudio" controls style="width: 100%; margin-bottom: 15px;"></audio>
 
         <div class="song-card">
-          <img src="https://via.placeholder.com/50" class="song-img" alt="Song">
           <div class="song-info">
-            <h4>اسم الأغنية الأولى</h4>
-            <p>أول أغنية سمعناها سوا</p>
+            <h4>أغنية الحكاية</h4>
+            <p>الموسيقى الخاصة بالموقع</p>
           </div>
-          <button class="btn-next" style="padding: 6px 12px; font-size: 12px; flex-grow: 0;" onclick="playSong('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')">شغل ▶</button>
+          <button class="btn-next" style="padding: 6px 12px; font-size: 12px; flex-grow: 0;" onclick="playCurrentSong()">شغل ▶</button>
         </div>
       </div>
 
@@ -301,7 +319,7 @@
         <h3 style="margin-bottom: 10px;">📸 ذكرياتنا المصورة</h3>
         <div class="gallery">
           <div class="photo-card">
-            <img src="https://via.placeholder.com/150" alt="Memory">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" alt="Memory">
             <p>أول خروجة سوا ❤️</p>
           </div>
         </div>
@@ -311,7 +329,7 @@
       <div class="step-card" id="step5">
         <h3 style="margin-bottom: 15px;">🧩 اختبر ذاكرتك!</h3>
         <div class="quiz-box">
-          <p style="font-size: 14px; margin-bottom: 10px;">1. إيه أكتر أكلة بحبها؟</p>
+          <p style="font-size: 14px; margin-bottom: 10px;">1. إيه أكلتنا المفضلة؟</p>
           <button class="quiz-option" onclick="answer(1, false, 'q1-msg')">بيتزا 🍕</button>
           <button class="quiz-option" onclick="answer(1, true, 'q1-msg')">المعكرونة بالبشاميل 🍝</button>
           <div id="q1-msg" class="quiz-feedback"></div>
@@ -335,6 +353,64 @@
     let currentStep = 1;
     const totalSteps = 5;
 
+    // تحميل البيانات المحفوظة مسبقاً إن وجدت
+    let siteData = {
+      title: localStorage.getItem("siteTitle") || "Our Romantic Story 💕",
+      heartIcon: localStorage.getItem("siteHeart") || "🔒",
+      message: localStorage.getItem("siteMsg") || "بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️",
+      songUrl: localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    };
+
+    // تطبيق البيانات على الصفحة
+    function applySavedData() {
+      document.getElementById("pageTitle").innerText = siteData.title;
+      document.getElementById("mainTitleText").innerText = siteData.title;
+      document.getElementById("contentHeaderTitle").innerText = siteData.title;
+      document.getElementById("lockIcon").innerText = siteData.heartIcon;
+      document.getElementById("displayMessage").innerText = siteData.message;
+      
+      // تعبئة خانات لوحة التحكم
+      document.getElementById("editTitle").value = siteData.title;
+      document.getElementById("editHeartIcon").value = siteData.heartIcon;
+      document.getElementById("editMessage").value = siteData.message;
+      document.getElementById("editSongUrl").value = siteData.songUrl;
+    }
+    applySavedData();
+
+    // خدعة النقرة السرية (اضغط 3 مرات متتالية على القلب أو العنوان لفتح لوحة التحكم)
+    let tapCount = 0;
+    function triggerSecretAdmin() {
+      tapCount++;
+      if (tapCount >= 3) {
+        tapCount = 0;
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      }
+    }
+    document.getElementById("mainTitleText").addEventListener("click", () => {
+      tapCount++;
+      if (tapCount >= 3) {
+        tapCount = 0;
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      }
+    });
+
+    function closeAdmin() {
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("lockScreen").style.display = "block";
+    }
+
+    function saveChanges() {
+      localStorage.setItem("siteTitle", document.getElementById("editTitle").value);
+      localStorage.setItem("siteHeart", document.getElementById("editHeartIcon").value);
+      localStorage.setItem("siteMsg", document.getElementById("editMessage").value);
+      localStorage.setItem("siteSong", document.getElementById("editSongUrl").value);
+      
+      alert("تم الحفظ بنجاح يا فنان! ✨");
+      location.reload();
+    }
+
     function unlock() {
       const pass = document.getElementById("passInput").value;
       if (pass === correctPass) {
@@ -342,7 +418,7 @@
         document.getElementById("mainContent").style.display = "block";
         startTimer();
         startBirthdayTimer();
-        playSong('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        playCurrentSong();
         updateStep();
       } else {
         document.getElementById("error").innerText = "كلمة السر مش صح، جرب تاني يا سكر ❤️";
@@ -389,9 +465,9 @@
       }, 1000);
     }
 
-    function playSong(url) {
+    function playCurrentSong() {
       const audio = document.getElementById("mainAudio");
-      audio.src = url;
+      audio.src = localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
       audio.play();
     }
 
@@ -409,7 +485,6 @@
       }
     }
 
-    // تساقط القلوب
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart-bg");
@@ -421,4 +496,504 @@
     }, 350);
   </script>
 </body>
-</html>
+      </html>
+                                                               <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Our Romantic Story 💕</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      overflow-x: hidden;
+    }
+
+    .heart-bg {
+      position: fixed;
+      top: -10vh;
+      font-size: 20px;
+      color: rgba(255, 77, 109, 0.8);
+      animation: fall 5s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(115vh) rotate(360deg); opacity: 0; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(20, 10, 15, 0.65);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 182, 193, 0.3);
+      border-radius: 25px;
+      padding: 25px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .heart-lock-shape {
+      width: 130px;
+      height: 130px;
+      background: linear-gradient(135deg, #ff4d6d, #800f2f);
+      margin: 10px auto 20px;
+      position: relative;
+      transform: rotate(-45deg);
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+      animation: pulse 1.5s infinite alternate;
+    }
+    .heart-lock-shape::before,
+    .heart-lock-shape::after {
+      content: "";
+      width: 130px;
+      height: 130px;
+      background: linear-gradient(135deg, #ff4d6d, #800f2f);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart-lock-shape::before { top: -65px; left: 0; }
+    .heart-lock-shape::after { left: 65px; top: 0; }
+    
+    .heart-content {
+      position: relative;
+      z-index: 3;
+      transform: rotate(45deg);
+      font-size: 35px;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(0.98); }
+      100% { transform: rotate(-45deg) scale(1.05); }
+    }
+
+    input[type="password"], input[type="text"], textarea {
+      width: 85%;
+      padding: 12px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      text-align: right;
+      font-size: 14px;
+      margin: 10px 0;
+      outline: none;
+    }
+
+    input[type="password"] { text-align: center; border-radius: 25px; }
+
+    .btn-main {
+      background: linear-gradient(45deg, #ff4d6d, #c9184a);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
+      width: 85%;
+      transition: 0.3s;
+      margin-top: 5px;
+    }
+    .btn-main:hover { transform: scale(1.03); }
+
+    .nav-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 10px;
+    }
+    .btn-next {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      flex-grow: 1;
+      transition: 0.3s;
+    }
+    .btn-next:disabled { background: rgba(255, 255, 255, 0.2); cursor: not-allowed; }
+
+    .step-card { display: none; }
+    .step-card.active { display: block; }
+
+    .date-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-right: 4px solid #ff4d6d;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      text-align: right;
+    }
+    .date-card h4 { font-size: 15px; color: #ffb703; }
+    .date-card p { font-size: 13px; color: #fff; margin-top: 3px; }
+
+    .timer-box {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 15px;
+      margin: 15px 0;
+    }
+    .timer-item { font-size: 16px; font-weight: bold; color: #ffb703; }
+    .timer-item span { display: block; font-size: 10px; color: #fff; }
+
+    .song-card {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+    .song-info { flex-grow: 1; text-align: right; }
+    .song-info h4 { font-size: 14px; }
+    .song-info p { font-size: 11px; color: #ffb3c1; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .photo-card {
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 5px;
+      text-align: center;
+    }
+    .photo-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
+    .photo-card p { font-size: 11px; margin-top: 5px; color: #ffb3c1; }
+
+    .quiz-box {
+      background: rgba(0,0,0,0.3);
+      padding: 15px;
+      border-radius: 15px;
+      text-align: right;
+      margin-bottom: 15px;
+    }
+    .quiz-option {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: right;
+    }
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 13px;
+      padding: 8px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 1. شاشة القفل بقلب رومانسي -->
+    <div id="lockScreen">
+      <div class="heart-lock-shape" id="secretTrigger" onclick="triggerSecretAdmin()">
+        <div class="heart-content" id="lockIcon">🔒</div>
+      </div>
+      <h2 id="mainTitleText" style="margin-top: 35px; font-size: 22px; cursor: pointer;">Our Romantic Story 💕</h2>
+      <p style="font-size: 12px; color: #ffb3c1; margin-top: 5px;">ادخل كلمة السر لفتح عالمنا الخاص</p>
+      <input type="password" id="passInput" placeholder="Password">
+      <br>
+      <button class="btn-main" onclick="unlock()">فتح 💕</button>
+      <p id="error" style="color: #ff85a1; margin-top: 10px; font-size: 12px;"></p>
+    </div>
+
+    <!-- لوحة التعديل المخفية السرية -->
+    <div id="adminPanel" style="display: none; text-align: right;">
+      <h3 style="color: #ffb703; margin-bottom: 10px; text-align: center;">⚙️ لوحة التحكم السرية</h3>
+      <p style="font-size: 11px; color: #ffb3c1; margin-bottom: 10px; text-align: center;">عدل براحتك واضغط حفظ</p>
+      
+      <label style="font-size: 12px;">اسم أو عنوان الموقع:</label>
+      <input type="text" id="editTitle" placeholder="Our Romantic Story 💕">
+
+      <label style="font-size: 12px;">رمز شكل القلب (ايقونة):</label>
+      <input type="text" id="editHeartIcon" placeholder="❤️ أو 💖 أو 🔒">
+
+      <label style="font-size: 12px;">رسالة الصفحة الرئيسية:</label>
+      <textarea id="editMessage" rows="3">بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️</textarea>
+
+      <label style="font-size: 12px;">رابط الأغنية (MP3):</label>
+      <input type="text" id="editSongUrl" placeholder="رابط الأغنية">
+
+      <button class="btn-main" style="width: 100%; margin-top: 10px;" onclick="saveChanges()">حفظ التعديلات ✨</button>
+      <button class="btn-main" style="width: 100%; margin-top: 5px; background: rgba(255,255,255,0.2);" onclick="closeAdmin()">إلغاء ❌</button>
+    </div>
+
+    <!-- 2. المحتوى الرئيسي بتنقل Next -->
+    <div id="mainContent" style="display: none;">
+      
+      <h2 id="contentHeaderTitle" style="font-size: 18px; color: #ffb3c1; margin-bottom: 15px;">Our Romantic Story 💕</h2>
+
+      <!-- الخطوة 1: قصتنا والعداد -->
+      <div class="step-card active" id="step1">
+        <h3>بداية حكايتنا 💕</h3>
+        <p style="font-size: 12px; color: #ffb3c1; margin-top: 4px;">7 مايو 2026</p>
+
+        <div class="timer-box">
+          <div class="timer-item"><div id="days">0</div><span>يوم</span></div>
+          <div class="timer-item"><div id="hours">0</div><span>ساعة</span></div>
+          <div class="timer-item"><div id="minutes">0</div><span>دقيقة</span></div>
+          <div class="timer-item"><div id="seconds">0</div><span>ثانية</span></div>
+        </div>
+
+        <div id="displayMessage" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; text-align: right; line-height: 1.6; font-size: 14px;">
+          بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️
+        </div>
+      </div>
+
+      <!-- الخطوة 2: تواريخنا المميزة -->
+      <div class="step-card" id="step2">
+        <h3 style="margin-bottom: 15px;">📅 تواريخ تميزنا</h3>
+
+        <div class="date-card">
+          <h4>❤️ بداية قصتنا (Anniversary)</h4>
+          <p>7 مايو 2026</p>
+        </div>
+
+        <div class="date-card">
+          <h4>🎂 عيد ميلادك (Birthday)</h4>
+          <p>15 أكتوبر</p>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 15px; margin-top: 15px;">
+          <h4 style="color: #ffb703; font-size: 14px;">⏳ باقي على عيد ميلاده الجاي:</h4>
+          <div class="timer-box">
+            <div class="timer-item"><div id="b_days">0</div><span>يوم</span></div>
+            <div class="timer-item"><div id="b_hours">0</div><span>ساعة</span></div>
+            <div class="timer-item"><div id="b_mins">0</div><span>دقيقة</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- الخطوة 3: أغانينا -->
+      <div class="step-card" id="step3">
+        <h3 style="margin-bottom: 15px;">🎵 قائمة أغانينا</h3>
+        <audio id="mainAudio" controls style="width: 100%; margin-bottom: 15px;"></audio>
+
+        <div class="song-card">
+          <div class="song-info">
+            <h4>أغنية الحكاية</h4>
+            <p>الموسيقى الخاصة بالموقع</p>
+          </div>
+          <button class="btn-next" style="padding: 6px 12px; font-size: 12px; flex-grow: 0;" onclick="playCurrentSong()">شغل ▶</button>
+        </div>
+      </div>
+
+      <!-- الخطوة 4: صورنا -->
+      <div class="step-card" id="step4">
+        <h3 style="margin-bottom: 10px;">📸 ذكرياتنا المصورة</h3>
+        <div class="gallery">
+          <div class="photo-card">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=300" alt="Memory">
+            <p>أول خروجة سوا ❤️</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- الخطوة 5: الأسئلة -->
+      <div class="step-card" id="step5">
+        <h3 style="margin-bottom: 15px;">🧩 اختبر ذاكرتك!</h3>
+        <div class="quiz-box">
+          <p style="font-size: 14px; margin-bottom: 10px;">1. إيه أكلتنا المفضلة؟</p>
+          <button class="quiz-option" onclick="answer(1, false, 'q1-msg')">بيتزا 🍕</button>
+          <button class="quiz-option" onclick="answer(1, true, 'q1-msg')">المعكرونة بالبشاميل 🍝</button>
+          <div id="q1-msg" class="quiz-feedback"></div>
+        </div>
+      </div>
+
+      <!-- أزرار التنقل بالأمام والخلف -->
+      <div class="nav-controls">
+        <button class="btn-next" id="prevBtn" onclick="changeStep(-1)">⬅️ السابق</button>
+        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">التالي ➡️</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const correctPass = "Love_you_forever";
+    const startDate = new Date("2026-05-07T00:00:00").getTime();
+    const nextBirthday = new Date("2026-10-15T00:00:00").getTime();
+
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    // تحميل البيانات المحفوظة مسبقاً إن وجدت
+    let siteData = {
+      title: localStorage.getItem("siteTitle") || "Our Romantic Story 💕",
+      heartIcon: localStorage.getItem("siteHeart") || "🔒",
+      message: localStorage.getItem("siteMsg") || "بحبك أوي، وعملت المكان ده عشان يبقى مرجع لكل لحظة حلوة بيننا ❤️",
+      songUrl: localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    };
+
+    // تطبيق البيانات على الصفحة
+    function applySavedData() {
+      document.getElementById("pageTitle").innerText = siteData.title;
+      document.getElementById("mainTitleText").innerText = siteData.title;
+      document.getElementById("contentHeaderTitle").innerText = siteData.title;
+      document.getElementById("lockIcon").innerText = siteData.heartIcon;
+      document.getElementById("displayMessage").innerText = siteData.message;
+      
+      // تعبئة خانات لوحة التحكم
+      document.getElementById("editTitle").value = siteData.title;
+      document.getElementById("editHeartIcon").value = siteData.heartIcon;
+      document.getElementById("editMessage").value = siteData.message;
+      document.getElementById("editSongUrl").value = siteData.songUrl;
+    }
+    applySavedData();
+
+    // خدعة النقرة السرية (اضغط 3 مرات متتالية على القلب أو العنوان لفتح لوحة التحكم)
+    let tapCount = 0;
+    function triggerSecretAdmin() {
+      tapCount++;
+      if (tapCount >= 3) {
+        tapCount = 0;
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      }
+    }
+    document.getElementById("mainTitleText").addEventListener("click", () => {
+      tapCount++;
+      if (tapCount >= 3) {
+        tapCount = 0;
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      }
+    });
+
+    function closeAdmin() {
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("lockScreen").style.display = "block";
+    }
+
+    function saveChanges() {
+      localStorage.setItem("siteTitle", document.getElementById("editTitle").value);
+      localStorage.setItem("siteHeart", document.getElementById("editHeartIcon").value);
+      localStorage.setItem("siteMsg", document.getElementById("editMessage").value);
+      localStorage.setItem("siteSong", document.getElementById("editSongUrl").value);
+      
+      alert("تم الحفظ بنجاح يا فنان! ✨");
+      location.reload();
+    }
+
+    function unlock() {
+      const pass = document.getElementById("passInput").value;
+      if (pass === correctPass) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        startTimer();
+        startBirthdayTimer();
+        playCurrentSong();
+        updateStep();
+      } else {
+        document.getElementById("error").innerText = "كلمة السر مش صح، جرب تاني يا سكر ❤️";
+      }
+    }
+
+    function changeStep(direction) {
+      currentStep += direction;
+      if (currentStep < 1) currentStep = 1;
+      if (currentStep > totalSteps) currentStep = totalSteps;
+      updateStep();
+    }
+
+    function updateStep() {
+      document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
+      document.getElementById('step' + currentStep).classList.add('active');
+
+      document.getElementById('prevBtn').disabled = (currentStep === 1);
+      document.getElementById('nextBtn').disabled = (currentStep === totalSteps);
+    }
+
+    function startTimer() {
+      setInterval(() => {
+        const now = new Date().getTime();
+        const diff = now - startDate;
+        if (diff > 0) {
+          document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+          document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+      }, 1000);
+    }
+
+    function startBirthdayTimer() {
+      setInterval(() => {
+        const now = new Date().getTime();
+        const diff = nextBirthday - now;
+        if (diff > 0) {
+          document.getElementById("b_days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+          document.getElementById("b_hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          document.getElementById("b_mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }
+      }, 1000);
+    }
+
+    function playCurrentSong() {
+      const audio = document.getElementById("mainAudio");
+      audio.src = localStorage.getItem("siteSong") || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+      audio.play();
+    }
+
+    function answer(qNum, isCorrect, msgId) {
+      const msgBox = document.getElementById(msgId);
+      msgBox.style.display = "block";
+      if (isCorrect) {
+        msgBox.style.background = "rgba(40, 167, 69, 0.4)";
+        msgBox.style.color = "#85e3a5";
+        msgBox.innerHTML = "صح! شاطر.. كنت عارفة إنك هتفتكرها 💕✨";
+      } else {
+        msgBox.style.background = "rgba(220, 53, 69, 0.4)";
+        msgBox.style.color = "#ff9999";
+        msgBox.innerHTML = "إزاي متذكرش دي؟! زعلت منك 😤❤️ جرب تاني!";
+      }
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-bg");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 5000);
+    }, 350);
+  </script>
+</body>
+  </html>
+  
