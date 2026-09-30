@@ -1309,4 +1309,179 @@ music.addEventListener(
 );
 
 
-/* ===========
+/* =========================
+   الرسالة
+========================= */
+
+var message =
+"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗";
+
+
+function startTyping() {
+
+    var box =
+        document.getElementById("typing");
+
+    box.innerHTML = "";
+
+    var index = 0;
+
+    function writeText() {
+
+        if (index < message.length) {
+
+            box.innerHTML +=
+                message.charAt(index);
+
+            index++;
+
+            setTimeout(
+                writeText,
+                35
+            );
+        }
+    }
+
+    writeText();
+}
+
+
+/* =========================
+   الانتقال بين الصفحات
+========================= */
+
+var currentPage = 1;
+
+
+function nextPage() {
+
+    var current =
+        document.getElementById(
+            "page" + currentPage
+        );
+
+    current.classList.remove("active");
+
+    currentPage++;
+
+    if (currentPage > 8) {
+        currentPage = 8;
+    }
+
+    var next =
+        document.getElementById(
+            "page" + currentPage
+        );
+
+    next.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================
+   العداد
+========================= */
+
+var startDate =
+    new Date(
+        "2026-05-07T00:00:00"
+    );
+
+
+function updateCounter() {
+
+    var now =
+        new Date();
+
+    var difference =
+        now - startDate;
+
+
+    var days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    var hours =
+        Math.floor(
+            (difference %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+
+    var minutes =
+        Math.floor(
+            (difference %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+
+    var seconds =
+        Math.floor(
+            (difference %
+            (1000 * 60)) /
+            1000
+        );
+
+
+    document
+        .getElementById("days")
+        .innerText = days;
+
+
+    document
+        .getElementById("hours")
+        .innerText = hours;
+
+
+    document
+        .getElementById("minutes")
+        .innerText = minutes;
+
+
+    document
+        .getElementById("seconds")
+        .innerText = seconds;
+}
+
+
+updateCounter();
+
+setInterval(
+    updateCounter,
+    1000
+);
+
+
+/* =========================
+   الضغط على Enter
+========================= */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                openWebsite();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
