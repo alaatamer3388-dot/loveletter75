@@ -30,124 +30,173 @@ body{
     justify-content:center;
     align-items:center;
     background:
-        radial-gradient(circle at center,#5c0018 0%,#26000b 45%,#090003 100%);
-    padding:20px;
+        radial-gradient(circle at center,#7b0025 0%,#420013 48%,#180006 100%);
+    padding:15px;
+    overflow:hidden;
 }
 
 .lock-box{
     width:100%;
     max-width:390px;
+    min-height:650px;
+    position:relative;
     text-align:center;
-    padding:32px 25px;
-    border-radius:30px;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.12);
-    box-shadow:0 0 35px rgba(255,0,70,0.25);
-    backdrop-filter:blur(10px);
+    padding:15px 25px 25px;
 }
 
-/* قلب كبير مرسوم بـ CSS */
+/* ================= CSS DRAWN HEART ================= */
 
 .lock-heart{
-    width:80px;
-    height:80px;
-    position:relative;
-    margin:12px auto 38px;
-    transform:rotate(-45deg);
-    background:#ff174f;
-    border-radius:10px;
-    filter:drop-shadow(0 0 20px rgba(255,23,79,.7));
-    animation:heartBeat 1.3s infinite;
+    position:absolute;
+    width:285px;
+    height:285px;
+    left:50%;
+    top:145px;
+    margin-left:-142.5px;
+    transform:rotate(-45deg) scale(1);
+    background:#d7193f;
+    border-radius:22px;
+    filter:
+        drop-shadow(0 0 18px rgba(255,40,80,.45))
+        drop-shadow(0 12px 25px rgba(0,0,0,.35));
+    animation:lockHeartBeat 1.5s infinite;
+    z-index:1;
 }
 
 .lock-heart::before,
 .lock-heart::after{
     content:"";
     position:absolute;
-    width:80px;
-    height:80px;
-    background:#ff174f;
+    width:285px;
+    height:285px;
+    background:#d7193f;
     border-radius:50%;
 }
 
 .lock-heart::before{
-    top:-40px;
+    top:-142.5px;
     left:0;
 }
 
 .lock-heart::after{
     top:0;
-    left:40px;
+    left:142.5px;
 }
 
-@keyframes heartBeat{
+@keyframes lockHeartBeat{
+
     0%,100%{
         transform:rotate(-45deg) scale(1);
     }
 
     50%{
-        transform:rotate(-45deg) scale(1.12);
+        transform:rotate(-45deg) scale(1.035);
     }
+
 }
 
+/* ================= LOCK CONTENT ================= */
+
 .lock-box .profile{
-    width:115px;
-    height:115px;
+    position:relative;
+    z-index:3;
+    width:92px;
+    height:92px;
     object-fit:cover;
     border-radius:50%;
-    border:3px solid #fff;
-    box-shadow:0 0 25px rgba(255,0,80,0.5);
-    margin-bottom:18px;
+    border:4px solid rgba(255,255,255,.65);
+    box-shadow:
+        0 0 18px rgba(255,255,255,.18),
+        0 0 25px rgba(255,0,80,.45);
+    margin-top:72px;
+    margin-bottom:8px;
 }
 
 .lock-box h1{
+    position:relative;
+    z-index:3;
     font-size:34px;
-    margin-bottom:5px;
+    margin-bottom:8px;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
 }
 
 .everything{
-    font-size:15px;
-    opacity:.75;
-    letter-spacing:1px;
-    margin-bottom:25px;
+    position:relative;
+    z-index:3;
+    font-size:17px;
+    opacity:.9;
+    letter-spacing:2px;
+    margin-bottom:70px;
+}
+
+.password-label{
+    position:relative;
+    z-index:3;
+    display:block;
+    text-align:right;
+    font-size:18px;
+    font-weight:bold;
+    margin:0 8px 10px;
 }
 
 #password{
+    position:relative;
+    z-index:3;
     width:100%;
-    height:50px;
+    height:58px;
     border:none;
     outline:none;
-    border-radius:15px;
-    background:rgba(255,255,255,0.12);
+    border-radius:18px;
+    background:rgba(255,255,255,0.13);
     color:white;
     text-align:center;
     font-size:18px;
-    margin-bottom:12px;
-    border:1px solid rgba(255,255,255,0.15);
+    letter-spacing:4px;
+    margin-bottom:38px;
+    border:2px solid rgba(255,255,255,.22);
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.04),
+        0 5px 18px rgba(0,0,0,.2);
+    backdrop-filter:blur(8px);
 }
 
 #password::placeholder{
-    color:transparent;
+    color:rgba(255,255,255,.85);
+    opacity:1;
+    letter-spacing:4px;
 }
 
 #errorMessage{
+    position:relative;
+    z-index:4;
     display:none;
     color:#ffb4c4;
     font-size:15px;
+    margin-top:-25px;
     margin-bottom:12px;
 }
 
 #unlockBtn{
+    position:relative;
+    z-index:3;
     width:100%;
-    height:50px;
+    height:58px;
     border:none;
-    border-radius:15px;
-    background:linear-gradient(135deg,#ff174f,#9b0031);
+    border-radius:18px;
+    background:rgba(120,0,35,.38);
+    border:2px solid rgba(255,255,255,.2);
     color:white;
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 20px rgba(255,0,70,0.25);
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.22),
+        inset 0 0 15px rgba(255,255,255,.04);
+    backdrop-filter:blur(8px);
+}
+
+#unlockBtn:active{
+    transform:scale(.97);
 }
 
 /* ================= MAIN ================= */
@@ -584,6 +633,65 @@ body{
     .final-message{
         font-size:19px;
     }
+
+    .lock-box{
+        min-height:610px;
+        padding-left:18px;
+        padding-right:18px;
+    }
+
+    .lock-heart{
+        width:265px;
+        height:265px;
+        margin-left:-132.5px;
+        top:145px;
+    }
+
+    .lock-heart::before,
+    .lock-heart::after{
+        width:265px;
+        height:265px;
+    }
+
+    .lock-heart::before{
+        top:-132.5px;
+    }
+
+    .lock-heart::after{
+        left:132.5px;
+    }
+
+    .lock-box .profile{
+        width:88px;
+        height:88px;
+        margin-top:65px;
+    }
+
+    .lock-box h1{
+        font-size:31px;
+    }
+
+    .everything{
+        margin-bottom:65px;
+        font-size:16px;
+    }
+
+    #password{
+        height:55px;
+        margin-bottom:32px;
+    }
+
+    #unlockBtn{
+        height:55px;
+    }
+}
+
+@media(max-height:700px){
+
+    .lock-box{
+        transform:scale(.9);
+    }
+
 }
 </style>
 </head>
@@ -596,6 +704,7 @@ body{
 
     <div class="lock-box">
 
+        <!-- القلب هنا رسمة CSS حقيقية وليس إيموجي -->
         <div class="lock-heart"></div>
 
         <img
@@ -604,16 +713,22 @@ body{
             alt="Profile"
         >
 
-        <h1>Ready</h1>
+        <h1>
+            Love
+        </h1>
 
         <div class="everything">
-            my everything
+            ❤️ my everything
         </div>
+
+        <label class="password-label">
+            Password
+        </label>
 
         <input
             type="password"
             id="password"
-            placeholder=""
+            placeholder="password"
             autocomplete="off"
         >
 
@@ -622,7 +737,7 @@ body{
         </p>
 
         <button id="unlockBtn" onclick="openWebsite()">
-            دخول ❤️
+            💗 Unlock 💗
         </button>
 
     </div>
@@ -679,8 +794,7 @@ body{
             <h2>Our Moments 💗</h2>
 
             <p>
-                كل لحظة بينا ليها مكان خاص عندي،
-                وإن شاء الله اللي جاي يبقى أحلى وأحلى 🫶🏻❤️
+                بحب كلامنا وكل حاجة صغيرة بينا، وإن شاء الله الأيام الجاية تجمعنا ونعيش أحلى أيام سوا ❤️
             </p>
 
             <button class="next-btn" onclick="nextPage()">
@@ -701,7 +815,7 @@ body{
         </h2>
 
         <div class="start-date">
-            💖سوا من:7/5/2029💖
+            💖سوا من:7/5/2056💖
         </div>
 
         <div class="counter">
@@ -787,7 +901,7 @@ body{
             >
 
             <div class="photo-caption">
-                نور عيني ❤️
+                نور عيني 😍❤️
             </div>
 
         </div>
@@ -828,27 +942,33 @@ body{
     <section class="page" id="page8">
 
         <h1 class="final-title">
-            Lovely 💞
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Lovely 💞
+            </span>
         </h1>
 
         <div class="final-message">
 
             <div>
-                ربنا يخليك ليا💕
+                ربنا يخليك ليا ياروحي 💕
             </div>
 
             <div>
-                وبس كده بعدين هنكبره سوا ياعيوني💗💗
+                وبس كده بعدين هنكبره سوا ياعيوني 💕
             </div>
 
             <div>
-                Our story is just beginning. 🫶🏻💗
+                <span dir="ltr" style="unicode-bidi:isolate;">
+                    Our story is just beginning 🌍💞
+                </span>
             </div>
 
         </div>
 
         <button class="relive-btn" onclick="reliveStory()">
-            Relive 💗
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Relive 💗
+            </span>
         </button>
 
     </section>
@@ -921,20 +1041,12 @@ const correctPassword = "Love_you_forever";
 
 /* ================= MUSIC ================= */
 
-/*
-   ملفات الأغاني بالترتيب
-*/
-
 const playlist = [
     "song2.mp3",
     "song.mp3",
     "song1.mp3"
 ];
 
-
-/*
-   أسماء الأغاني التي تظهر في المشغل
-*/
 
 const songNames = [
     "فعيني حاجة تانية😍❤️",
@@ -967,17 +1079,8 @@ function loadSong(index, autoplay=false){
         (index + playlist.length) %
         playlist.length;
 
-    /*
-       تشغيل ملف الأغنية
-    */
-
     music.src =
         playlist[currentSong];
-
-    /*
-       إظهار اسم الأغنية الحقيقي
-       بدل اسم الملف
-    */
 
     playerTitle.innerText =
         songNames[currentSong];
@@ -986,7 +1089,6 @@ function loadSong(index, autoplay=false){
         "0:00";
 
     music.load();
-
 
     if(autoplay){
 
@@ -1079,11 +1181,6 @@ function toggleMusic(){
 }
 
 
-/*
-   لما الأغنية تخلص
-   ينتقل تلقائيًا للي بعدها
-*/
-
 music.addEventListener(
     "ended",
     function(){
@@ -1093,10 +1190,6 @@ music.addEventListener(
     }
 );
 
-
-/*
-   تحديث الوقت
-*/
 
 music.addEventListener(
     "timeupdate",
@@ -1124,6 +1217,56 @@ music.addEventListener(
 
     }
 );
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+let currentPage = 1;
+const totalPages = 8;
+
+
+function showPage(pageNumber){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page){
+
+            page.classList.remove("active");
+
+        });
+
+    const page =
+        document.getElementById(
+            "page" + pageNumber
+        );
+
+    if(page){
+
+        page.classList.add("active");
+
+    }
+
+}
+
+
+function nextPage(){
+
+    if(currentPage < totalPages){
+
+        currentPage++;
+
+        showPage(
+            currentPage
+        );
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+}
 
 
 /* ================= OPEN WEBSITE ================= */
@@ -1197,66 +1340,10 @@ document
 );
 
 
-/* ================= PAGES ================= */
-
-let currentPage = 1;
-
-const totalPages = 8;
-
-
-function showPage(pageNumber){
-
-    for(
-        let i = 1;
-        i <= totalPages;
-        i++
-    ){
-
-        document
-        .getElementById(
-            "page" + i
-        )
-        .classList.remove(
-            "active"
-        );
-
-    }
-
-    document
-    .getElementById(
-        "page" + pageNumber
-    )
-    .classList.add(
-        "active"
-    );
-
-}
-
-
-function nextPage(){
-
-    if(currentPage < totalPages){
-
-        currentPage++;
-
-        showPage(
-            currentPage
-        );
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-
-}
-
-
 /* ================= TYPING ================= */
 
 const introText =
-"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗";
+"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتناوبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض يبطتي بحبك أوي 🌍💗💗💗.";
 
 
 let typingStarted = false;
@@ -1315,7 +1402,7 @@ function startTyping(){
 
 var startDate =
     new Date(
-        "2026-05-07T00:00:00"
+        "2056-05-07T00:00:00"
     );
 
 
@@ -1442,16 +1529,20 @@ function createHeart(){
     heart.className =
         "floating-heart";
 
+    /* ❤️ يظهر أكثر من باقي القلوب */
+
     heart.innerText =
         [
             "❤️",
-            "💗",
+            "❤️",
+            "❤️",
+            "❤️",
+            "💖",
             "💕",
-            "💞",
-            "🫶🏻"
+            "💞"
         ][
             Math.floor(
-                Math.random() * 5
+                Math.random() * 7
             )
         ];
 
