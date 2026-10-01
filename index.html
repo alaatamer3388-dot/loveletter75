@@ -301,6 +301,7 @@ p{
 /* ================= MUSIC ================= */
 
 .music-player{
+    display:none;
     position:fixed;
     bottom:15px;
     left:50%;
@@ -760,15 +761,15 @@ p{
         <div class="final-text">
 
             <div>
-                ربنا يخليك ليا💕
+                ربنا يخليك ليا ياروحي 💕
             </div>
 
             <div>
-                وبس كده بعدين هنكبره سوا ياعيوني💗💗
+                وبس كده بعدين هنكبره سوا ياعيوني💕
             </div>
 
             <div>
-                Our story is just beginning 💗
+                Our story is just beginning 🌍💞
             </div>
 
         </div>
@@ -787,7 +788,10 @@ p{
 
 <!-- ================= MUSIC ================= -->
 
-<div class="music-player">
+<div
+    class="music-player"
+    id="musicPlayer"
+>
 
     <div class="music-top">
 
@@ -869,7 +873,16 @@ function unlock(){
             "lockScreen"
         ).style.display = "none";
 
+        document.getElementById(
+            "musicPlayer"
+        ).style.display = "block";
+
         document.body.style.overflowX = "hidden";
+
+        loadSong(
+            0,
+            false
+        );
 
         startTyping();
 
@@ -1289,7 +1302,7 @@ function nextSongMusic(){
 
     currentSong++;
 
-    if(currentSong >= songs.length){
+     if(currentSong >= songs.length){
 
         currentSong = 0;
 
@@ -1310,7 +1323,7 @@ function previousSong(){
     if(currentSong < 0){
 
         currentSong =
-               songs.length - 1;
+            songs.length - 1;
 
     }
 
@@ -1388,10 +1401,7 @@ audio.addEventListener(
 
 /* ================= INITIAL MUSIC ================= */
 
-loadSong(
-    0,
-    false
-);
+// لا يتم تحميل الأغنية هنا قبل الباسورد
 
 createHearts();
 
