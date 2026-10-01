@@ -1,59 +1,36 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>My life ❤️</title>
 
 <style>
-
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    min-height:100vh;
-    background:
-        radial-gradient(circle at top,#65152b 0%,#350914 45%,#180208 100%);
-    color:#fff;
     font-family:Arial,sans-serif;
+    background:#180006;
+    color:white;
+    min-height:100vh;
     overflow-x:hidden;
 }
 
-.page{
-    display:none;
-    min-height:100vh;
-    padding:35px 20px 120px;
-    text-align:center;
-    animation:fade .7s ease;
-}
-
-.page.active{
-    display:block;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* ================= LOCK ================= */
+/* ================= LOCK SCREEN ================= */
 
 #lockScreen{
-    min-height:100vh;
+    position:fixed;
+    inset:0;
+    z-index:9999;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at center,#5c0018 0%,#26000b 45%,#090003 100%);
     padding:20px;
 }
 
@@ -61,328 +38,495 @@ body{
     width:100%;
     max-width:390px;
     text-align:center;
-    padding:35px 25px;
+    padding:32px 25px;
     border-radius:30px;
-    background:rgba(80,10,30,.45);
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 0 35px rgba(255,0,70,.18);
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 0 35px rgba(255,0,70,0.25);
+    backdrop-filter:blur(10px);
 }
 
-.profile-img{
-    width:125px;
-    height:125px;
+/* قلب كبير مرسوم بـ CSS */
+
+.lock-heart{
+    width:80px;
+    height:80px;
+    position:relative;
+    margin:12px auto 38px;
+    transform:rotate(-45deg);
+    background:#ff174f;
+    border-radius:10px;
+    filter:drop-shadow(0 0 20px rgba(255,23,79,.7));
+    animation:heartBeat 1.3s infinite;
+}
+
+.lock-heart::before,
+.lock-heart::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:80px;
+    background:#ff174f;
+    border-radius:50%;
+}
+
+.lock-heart::before{
+    top:-40px;
+    left:0;
+}
+
+.lock-heart::after{
+    top:0;
+    left:40px;
+}
+
+@keyframes heartBeat{
+    0%,100%{
+        transform:rotate(-45deg) scale(1);
+    }
+
+    50%{
+        transform:rotate(-45deg) scale(1.12);
+    }
+}
+
+.lock-box .profile{
+    width:115px;
+    height:115px;
     object-fit:cover;
     border-radius:50%;
-    border:4px solid #ffb3c7;
-    box-shadow:0 0 25px rgba(255,100,150,.5);
+    border:3px solid #fff;
+    box-shadow:0 0 25px rgba(255,0,80,0.5);
     margin-bottom:18px;
 }
 
-.heart{
-    font-size:65px;
-    line-height:1;
-    animation:beat 1.2s infinite;
+.lock-box h1{
+    font-size:34px;
+    margin-bottom:5px;
 }
 
-@keyframes beat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.12)}
-}
-
-.lock-title{
-    font-size:38px;
-    margin:10px 0 5px;
-}
-
-.lock-subtitle{
-    font-size:20px;
-    color:#ffc5d4;
+.everything{
+    font-size:15px;
+    opacity:.75;
+    letter-spacing:1px;
     margin-bottom:25px;
 }
 
-input{
+#password{
     width:100%;
-    padding:15px;
+    height:50px;
     border:none;
     outline:none;
     border-radius:15px;
+    background:rgba(255,255,255,0.12);
+    color:white;
     text-align:center;
-    font-size:16px;
+    font-size:18px;
+    margin-bottom:12px;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+#password::placeholder{
+    color:transparent;
+}
+
+#errorMessage{
+    display:none;
+    color:#ffb4c4;
+    font-size:15px;
     margin-bottom:12px;
 }
 
-.unlock-btn,
-.next-btn,
-.relive-btn{
+#unlockBtn{
+    width:100%;
+    height:50px;
     border:none;
-    cursor:pointer;
+    border-radius:15px;
+    background:linear-gradient(135deg,#ff174f,#9b0031);
     color:white;
-    background:linear-gradient(135deg,#9d173d,#e83d70);
-    padding:14px 28px;
-    border-radius:30px;
-    font-size:17px;
-    box-shadow:0 8px 20px rgba(0,0,0,.25);
-}
-
-.unlock-btn:active,
-.next-btn:active,
-.relive-btn:active{
-    transform:scale(.96);
-}
-
-.error{
-    min-height:25px;
-    color:#ff9db7;
-    margin-bottom:8px;
-}
-
-
-/* ================= GENERAL ================= */
-
-.content{
-    max-width:650px;
-    margin:auto;
-}
-
-h1{
-    font-size:35px;
-    margin:15px 0 25px;
-}
-
-h2{
-    font-size:29px;
-}
-
-p{
-    line-height:2;
     font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,0,70,0.25);
 }
 
-.big-heart{
-    font-size:100px;
-    animation:beat 1.3s infinite;
-    margin:30px 0;
+/* ================= MAIN ================= */
+
+#main{
+    display:none;
+    min-height:100vh;
+    padding-bottom:100px;
 }
 
-.next-btn{
-    margin-top:30px;
+.page{
+    display:none;
+    min-height:100vh;
+    padding:35px 20px 130px;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
 }
 
-
-/* ================= PAGE 1 ================= */
-
-.intro-heart{
-    font-size:32px;
-    margin-top:40px;
+.page.active{
+    display:flex;
 }
 
-.typing-box{
-    margin:25px auto;
-    max-width:600px;
-    font-size:20px;
-    line-height:2.1;
+/* ================= INTRO ================= */
+
+.intro-card{
+    width:100%;
+    max-width:700px;
+    padding:30px 25px;
+    border-radius:28px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 30px rgba(255,0,70,0.12);
+}
+
+#typingText{
+    font-size:21px;
+    line-height:2;
     min-height:250px;
 }
 
 .cursor{
     display:inline-block;
     width:2px;
-    height:22px;
-    background:#fff;
-    margin-right:3px;
-    animation:blink .8s infinite;
+    height:23px;
+    background:white;
+    margin-right:4px;
+    animation:blink .7s infinite;
 }
 
 @keyframes blink{
-    0%,50%{opacity:1}
-    51%,100%{opacity:0}
+    0%,50%{
+        opacity:1;
+    }
+
+    51%,100%{
+        opacity:0;
+    }
 }
 
+/* ================= BUTTONS ================= */
 
-/* ================= PAGE 3 ================= */
-
-.moments-text{
+.next-btn{
     margin-top:30px;
-    font-size:20px;
-    line-height:2.2;
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ff174f,#a50032);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 22px rgba(255,0,70,0.25);
+    transition:.25s;
 }
 
+.next-btn:active{
+    transform:scale(.95);
+}
 
-/* ================= PAGE 4 ================= */
+/* ================= BIG HEART ================= */
 
-.date{
+.big-heart{
+    font-size:150px;
+    animation:heartBeatEmoji 1.2s infinite;
+    filter:drop-shadow(0 0 25px rgba(255,0,70,.5));
+}
+
+@keyframes heartBeatEmoji{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.love-title{
+    font-size:55px;
+    margin-top:20px;
+    text-shadow:0 0 20px rgba(255,0,70,.5);
+}
+
+/* ================= MOMENTS ================= */
+
+.moment-card{
+    width:100%;
+    max-width:600px;
+    padding:30px 22px;
+    border-radius:28px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 0 30px rgba(255,0,70,.15);
+}
+
+.moment-card h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.moment-card p{
+    font-size:20px;
+    line-height:2;
+}
+
+/* ================= COUNTER ================= */
+
+.counter-title{
+    font-size:38px;
+    margin-bottom:18px;
+}
+
+.start-date{
     font-size:22px;
-    color:#ffc1d1;
-    margin:20px 0;
+    margin-bottom:28px;
 }
 
 .counter{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin:25px auto;
+    gap:10px;
+    width:100%;
     max-width:600px;
 }
 
 .counter-box{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.1);
+    padding:18px 8px;
     border-radius:18px;
-    padding:15px 5px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
 }
 
-.counter-number{
+.counter-box span{
     display:block;
-    font-size:27px;
+    font-size:30px;
     font-weight:bold;
+    margin-bottom:8px;
 }
 
-.counter-label{
+.counter-box small{
     font-size:13px;
-    color:#ffc1d1;
+    opacity:.8;
 }
 
-.love-line{
-    font-size:21px;
-    margin:30px 0;
+.counter-love{
+    margin-top:25px;
+    font-size:19px;
 }
 
 .confession{
-    margin-top:35px;
+    margin-top:45px;
     padding:25px;
+    width:100%;
+    max-width:500px;
     border-radius:25px;
     background:rgba(255,255,255,.06);
 }
 
-.confession h2{
-    margin-top:0;
+.confession h3{
+    font-size:22px;
+    margin-bottom:15px;
 }
 
-.confession-date{
-    color:#ffc1d1;
-    font-size:19px;
+.confession p{
+    font-size:20px;
 }
 
+/* ================= PHOTOS ================= */
 
-/* ================= IMAGE PAGES ================= */
-
-.photo{
-    width:min(90%,450px);
-    max-height:600px;
-    object-fit:cover;
+.photo-card{
+    width:100%;
+    max-width:420px;
+    padding:15px;
     border-radius:25px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 0 30px rgba(255,0,70,.15);
+}
+
+.photo-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:20px;
     display:block;
-    margin:30px auto 20px;
-    border:3px solid rgba(255,190,210,.45);
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
 }
 
-.caption{
+.photo-caption{
+    margin-top:18px;
     font-size:23px;
-    margin:20px 0;
+    font-weight:bold;
+    line-height:1.6;
 }
 
-
-/* ================= PAGE 8 ================= */
+/* ================= FINAL PAGE ================= */
 
 .final-title{
-    font-size:38px;
-    margin-top:45px;
+    font-size:45px;
+    margin-bottom:30px;
+    text-shadow:0 0 20px rgba(255,0,70,.5);
 }
 
-.final-text{
-    font-size:21px;
-    line-height:2.2;
-    margin:30px auto;
-    max-width:600px;
+.final-message{
+    width:100%;
+    max-width:650px;
+    padding:30px 22px;
+    border-radius:30px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    font-size:22px;
+    line-height:2.1;
 }
 
+.relive-btn{
+    margin-top:30px;
+    padding:15px 38px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ff174f,#9b0031);
+    color:white;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(255,0,70,.3);
+}
 
-/* ================= MUSIC ================= */
+/* ================= MUSIC PLAYER ================= */
 
-.music-player{
-    display:none;
+.fixed-music-player{
     position:fixed;
-    bottom:15px;
     left:50%;
+    bottom:10px;
     transform:translateX(-50%);
-    width:calc(100% - 25px);
-    max-width:500px;
-    background:rgba(40,4,14,.94);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,150,180,.2);
-    border-radius:25px;
+    width:92%;
+    max-width:460px;
+    z-index:5000;
     padding:12px 15px;
-    z-index:1000;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    border-radius:25px;
+    background:rgba(30,0,10,.92);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 25px rgba(255,0,70,.2);
+    backdrop-filter:blur(12px);
 }
 
-.music-top{
+.player-info{
     display:flex;
     align-items:center;
     gap:12px;
+    margin-bottom:8px;
 }
 
-.music-cover{
+.player-info img{
     width:48px;
     height:48px;
+    border-radius:50%;
     object-fit:cover;
-    border-radius:12px;
+    border:2px solid rgba(255,255,255,.7);
 }
 
-.song-info{
+.player-details{
     flex:1;
-    text-align:right;
+    min-width:0;
 }
 
-.song-title{
+#playerTitle{
     font-size:14px;
-    color:#fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.music-controls{
+.music-bars{
     display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    margin-top:8px;
+    align-items:flex-end;
+    gap:3px;
+    height:20px;
+    margin-top:4px;
 }
 
-.music-btn{
+.music-bars span{
+    width:4px;
+    height:6px;
+    border-radius:5px;
+    background:#ff4d75;
+}
+
+.music-bars.playing span:nth-child(1){
+    animation:musicBar .55s infinite alternate;
+}
+
+.music-bars.playing span:nth-child(2){
+    animation:musicBar .4s infinite alternate;
+}
+
+.music-bars.playing span:nth-child(3){
+    animation:musicBar .65s infinite alternate;
+}
+
+.music-bars.playing span:nth-child(4){
+    animation:musicBar .45s infinite alternate;
+}
+
+@keyframes musicBar{
+    from{
+        height:5px;
+    }
+
+    to{
+        height:19px;
+    }
+}
+
+.player-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+}
+
+.player-controls button{
+    width:42px;
+    height:38px;
     border:none;
-    background:none;
+    border-radius:15px;
+    background:rgba(255,255,255,.08);
     color:white;
-    font-size:22px;
+    font-size:19px;
     cursor:pointer;
 }
 
-.play-btn{
-    width:42px;
+.player-controls #playPauseBtn{
+    width:50px;
     height:42px;
-    border-radius:50%;
-    background:#d72d61;
+    background:linear-gradient(135deg,#ff174f,#9b0031);
+    font-size:20px;
 }
 
-.time{
-    font-size:11px;
-    color:#dca0b1;
-    text-align:center;
+#currentTime{
+    font-size:12px;
+    opacity:.75;
+    min-width:38px;
 }
-
 
 /* ================= FLOATING HEARTS ================= */
 
 .floating-heart{
     position:fixed;
-    bottom:-40px;
+    bottom:-30px;
+    font-size:20px;
     pointer-events:none;
-    z-index:999;
-    animation:floatUp linear forwards;
+    z-index:1000;
+    animation:floatHeart linear forwards;
 }
 
-@keyframes floatUp{
+@keyframes floatHeart{
     0%{
-        transform:translateY(0) rotate(0deg);
+        transform:translateY(0) scale(.8);
         opacity:0;
     }
 
@@ -391,40 +535,60 @@ p{
     }
 
     100%{
-        transform:translateY(-110vh) rotate(25deg);
+        transform:translateY(-110vh) scale(1.5);
         opacity:0;
     }
 }
 
-
 /* ================= MOBILE ================= */
 
-@media(max-width:500px){
+@media(max-width:600px){
 
-    h1{
-        font-size:30px;
+    .page{
+        padding-left:15px;
+        padding-right:15px;
     }
 
-    .typing-box{
+    #typingText{
         font-size:18px;
     }
 
-    .counter-number{
-        font-size:22px;
+    .big-heart{
+        font-size:110px;
     }
 
-    .counter-label{
+    .love-title{
+        font-size:45px;
+    }
+
+    .counter-title{
+        font-size:32px;
+    }
+
+    .start-date{
+        font-size:18px;
+    }
+
+    .counter-box span{
+        font-size:24px;
+    }
+
+    .counter-box small{
         font-size:11px;
     }
 
-}
+    .final-title{
+        font-size:38px;
+    }
 
+    .final-message{
+        font-size:19px;
+    }
+}
 </style>
 </head>
 
-
 <body>
-
 
 <!-- ================= LOCK SCREEN ================= -->
 
@@ -432,37 +596,33 @@ p{
 
     <div class="lock-box">
 
-        <div class="heart">❤️</div>
+        <div class="lock-heart"></div>
 
         <img
-            class="profile-img"
+            class="profile"
             src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg"
+            alt="Profile"
         >
 
-        <div class="lock-title">
-            love ❤️
-        </div>
+        <h1>Ready</h1>
 
-        <div class="lock-subtitle">
+        <div class="everything">
             my everything
         </div>
 
         <input
             type="password"
             id="password"
-            placeholder="Password"
+            placeholder=""
+            autocomplete="off"
         >
 
-        <div
-            class="error"
-            id="error"
-        ></div>
+        <p id="errorMessage">
+            غلط ياكتكوتي حاول تاني❤️
+        </p>
 
-        <button
-            class="unlock-btn"
-            onclick="unlock()"
-        >
-            Unlock 💕
+        <button id="unlockBtn" onclick="openWebsite()">
+            دخول ❤️
         </button>
 
     </div>
@@ -470,377 +630,277 @@ p{
 </div>
 
 
-<!-- ================= PAGE 1 ================= -->
+<!-- ================= MAIN WEBSITE ================= -->
 
-<div
-    class="page active"
-    id="page1"
->
+<div id="main">
 
-    <div class="content">
+    <!-- PAGE 1 -->
 
-        <div class="intro-heart">
-            😍
+    <section class="page active" id="page1">
+
+        <div class="intro-card">
+
+            <div id="typingText"></div>
+
+            <button class="next-btn" onclick="nextPage()">
+                Next ❤️
+            </button>
+
         </div>
 
-        <div
-            class="typing-box"
-            id="typingText"
-        ></div>
-
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ================= PAGE 2 ================= -->
+    <!-- PAGE 2 -->
 
-<div
-    class="page"
-    id="page2"
->
-
-    <div class="content">
+    <section class="page" id="page2">
 
         <div class="big-heart">
             ❤️
         </div>
 
-        <h1>
+        <div class="love-title">
             بحبك
-        </h1>
+        </div>
 
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
+        <button class="next-btn" onclick="nextPage()">
             Next ❤️
         </button>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ================= PAGE 3 ================= -->
+    <!-- PAGE 3 -->
 
-<div
-    class="page"
-    id="page3"
->
+    <section class="page" id="page3">
 
-    <div class="content">
+        <div class="moment-card">
 
-        <h1>
-            Our Moments 💗
-        </h1>
+            <h2>Our Moments 💗</h2>
 
-        <p class="moments-text">
-            بحب كلامنا وكل حاجة صغيرة بينا، وإن شاء الله الأيام الجاية تجمعنا ونعيش أحلى أيام سوا ❤️
-        </p>
+            <p>
+                كل لحظة بينا ليها مكان خاص عندي،
+                وإن شاء الله اللي جاي يبقى أحلى وأحلى 🫶🏻❤️
+            </p>
 
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
+            <button class="next-btn" onclick="nextPage()">
+                Next ❤️
+            </button>
 
-    </div>
+        </div>
 
-</div>
+    </section>
 
 
-<!-- ================= PAGE 4 ================= -->
+    <!-- PAGE 4 -->
 
-<div
-    class="page"
-    id="page4"
->
+    <section class="page" id="page4">
 
-    <div class="content">
-
-        <h1>
+        <h2 class="counter-title">
             بدايتنا💞
-        </h1>
+        </h2>
 
-        <div class="date">
+        <div class="start-date">
             💖سوا من:7/5/2026💖
         </div>
 
         <div class="counter">
 
             <div class="counter-box">
-                <span
-                    class="counter-number"
-                    id="days"
-                >
-                    0
-                </span>
-                <span class="counter-label">
-                    يوم
-                </span>
+                <span id="days">0</span>
+                <small>يوم</small>
             </div>
 
             <div class="counter-box">
-                <span
-                    class="counter-number"
-                    id="hours"
-                >
-                    0
-                </span>
-                <span class="counter-label">
-                    ساعة
-                </span>
+                <span id="hours">0</span>
+                <small>ساعة</small>
             </div>
 
             <div class="counter-box">
-                <span
-                    class="counter-number"
-                    id="minutes"
-                >
-                    0
-                </span>
-                <span class="counter-label">
-                    دقيقة
-                </span>
+                <span id="minutes">0</span>
+                <small>دقيقة</small>
             </div>
 
             <div class="counter-box">
-                <span
-                    class="counter-number"
-                    id="seconds"
-                >
-                    0
-                </span>
-                <span class="counter-label">
-                    ثانية
-                </span>
+                <span id="seconds">0</span>
+                <small>ثانية</small>
             </div>
 
         </div>
 
-        <div class="love-line">
+        <p class="counter-love">
             كل يوم بحبك أكتر من الي قبله ❤
-        </div>
+        </p>
 
         <div class="confession">
 
-            <h2>
+            <h3>
                 📌 يوم ما قولتلك بحبك
-            </h2>
+            </h3>
 
-            <div class="confession-date">
+            <p>
                 2026-06-14
+            </p>
+
+        </div>
+
+        <button class="next-btn" onclick="nextPage()">
+            Next ❤️
+        </button>
+
+    </section>
+
+
+    <!-- PAGE 5 -->
+
+    <section class="page" id="page5">
+
+        <div class="photo-card">
+
+            <img
+                src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png"
+                alt="Moment 1"
+            >
+
+            <div class="photo-caption">
+                بحبك يبطتي 🌍❤️
             </div>
 
         </div>
 
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
+        <button class="next-btn" onclick="nextPage()">
             Next ❤️
         </button>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ================= PAGE 5 ================= -->
+    <!-- PAGE 6 -->
 
-<div
-    class="page"
-    id="page5"
->
+    <section class="page" id="page6">
 
-    <div class="content">
+        <div class="photo-card">
 
-        <img
-            class="photo"
-            src="https://i.postimg.cc/g0CJD0wY/file-0000000032788210b4f172257c12d7bb.png"
-        >
+            <img
+                src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg"
+                alt="Moment 2"
+            >
 
-        <div class="caption">
-            بحبك يبطتي 🌍❤️
+            <div class="photo-caption">
+                نور عيني ❤️
+            </div>
+
         </div>
 
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
+        <button class="next-btn" onclick="nextPage()">
             Next ❤️
         </button>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ================= PAGE 6 ================= -->
+    <!-- PAGE 7 -->
 
-<div
-    class="page"
-    id="page6"
->
+    <section class="page" id="page7">
 
-    <div class="content">
+        <div class="photo-card">
 
-        <img
-            class="photo"
-            src="https://i.postimg.cc/rpxcqNmV/283e634604b0b5e2928f306b60a8aa6d.jpg"
-        >
+            <img
+                src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg"
+                alt="Moment 3"
+            >
 
-        <div class="caption">
-            نور عيني 😍❤️
+            <div class="photo-caption">
+                بوسة الاستيك أحلى 😋💗
+            </div>
+
         </div>
 
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
+        <button class="next-btn" onclick="nextPage()">
             Next ❤️
         </button>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- ================= PAGE 7 ================= -->
+    <!-- PAGE 8 -->
 
-<div
-    class="page"
-    id="page7"
->
-
-    <div class="content">
-
-        <img
-            class="photo"
-            src="https://i.postimg.cc/W1SYgDH0/f5ef543c1df8bd4ada03e752d0b24a46.jpg"
-        >
-
-        <div class="caption">
-            بوسة الاستيك أحلى 😋💗
-        </div>
-
-        <button
-            class="next-btn"
-            onclick="nextPage()"
-        >
-            Next ❤️
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= PAGE 8 ================= -->
-
-<div
-    class="page"
-    id="page8"
->
-
-    <div class="content">
+    <section class="page" id="page8">
 
         <h1 class="final-title">
-            Lovely 💕
+            Lovely 💞
         </h1>
 
-        <div class="final-text">
+        <div class="final-message">
 
             <div>
-                ربنا يخليك ليا ياروحي 💕
+                ربنا يخليك ليا💕
             </div>
 
             <div>
-                وبس كده بعدين هنكبره سوا ياعيوني💕
+                وبس كده بعدين هنكبره سوا ياعيوني💗💗
             </div>
 
             <div>
-                Our story is just beginning 🌍💞
+                Our story is just beginning. 🫶🏻💗
             </div>
 
         </div>
 
-        <button
-            class="relive-btn"
-            onclick="reliveStory()"
-        >
+        <button class="relive-btn" onclick="reliveStory()">
             Relive 💗
         </button>
 
-    </div>
+    </section>
 
 </div>
 
 
-<!-- ================= MUSIC ================= -->
+<!-- ================= MUSIC PLAYER ================= -->
 
-<div
-    class="music-player"
-    id="musicPlayer"
->
+<div class="fixed-music-player">
 
-    <div class="music-top">
+    <div class="player-info">
 
         <img
-            class="music-cover"
             src="https://i.postimg.cc/SQZ2MmSy/1e9cbddcc345fe84372957aaf1e4b0d4.jpg"
+            alt="Music"
         >
 
-        <div class="song-info">
+        <div class="player-details">
 
-            <div
-                class="song-title"
-                id="songTitle"
-            >
+            <div id="playerTitle">
                 فعيني حاجة تانية😍❤️
             </div>
 
-            <div
-                class="time"
-                id="time"
-            >
-                0:00 / 0:00
+            <div class="music-bars" id="musicBars">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
             </div>
 
         </div>
 
     </div>
 
-    <div class="music-controls">
+    <div class="player-controls">
 
-        <button
-            class="music-btn"
-            onclick="previousSong()"
-        >
+        <span id="currentTime">
+            0:00
+        </span>
+
+        <button onclick="previousSong()">
             ⏮
         </button>
 
-        <button
-            class="music-btn play-btn"
-            onclick="togglePlay()"
-            id="playButton"
-        >
+        <button id="playPauseBtn" onclick="toggleMusic()">
             ▶
         </button>
 
-        <button
-            class="music-btn"
-            onclick="nextSongMusic()"
-        >
+        <button onclick="nextSong()">
             ⏭
         </button>
 
@@ -849,7 +909,7 @@ p{
 </div>
 
 
-<audio id="audio"></audio>
+<audio id="music" preload="auto"></audio>
 
 
 <script>
@@ -859,41 +919,292 @@ p{
 const correctPassword = "Love_you_forever";
 
 
-function unlock(){
+/* ================= MUSIC ================= */
 
-    const password =
-        document.getElementById("password").value;
+/*
+   ملفات الأغاني بالترتيب
+*/
 
-    const error =
-        document.getElementById("error");
+const playlist = [
+    "song2.mp3",
+    "song.mp3",
+    "song1.mp3"
+];
 
-    if(password === correctPassword){
 
-        document.getElementById(
-            "lockScreen"
-        ).style.display = "none";
+/*
+   أسماء الأغاني التي تظهر في المشغل
+*/
 
-        document.getElementById(
-            "musicPlayer"
-        ).style.display = "block";
+const songNames = [
+    "فعيني حاجة تانية😍❤️",
+    "حبيبي وأغلى الناس🏡❤️",
+    "خليك معايا 🫂💗"
+];
 
-        document.body.style.overflowX = "hidden";
 
-        loadSong(
-            0,
-            false
-        );
+let currentSong = 0;
 
-        startTyping();
+const music =
+    document.getElementById("music");
+
+const playPauseBtn =
+    document.getElementById("playPauseBtn");
+
+const playerTitle =
+    document.getElementById("playerTitle");
+
+const currentTime =
+    document.getElementById("currentTime");
+
+const musicBars =
+    document.getElementById("musicBars");
+
+
+function loadSong(index, autoplay=false){
+
+    currentSong =
+        (index + playlist.length) %
+        playlist.length;
+
+    /*
+       تشغيل ملف الأغنية
+    */
+
+    music.src =
+        playlist[currentSong];
+
+    /*
+       إظهار اسم الأغنية الحقيقي
+       بدل اسم الملف
+    */
+
+    playerTitle.innerText =
+        songNames[currentSong];
+
+    currentTime.innerText =
+        "0:00";
+
+    music.load();
+
+
+    if(autoplay){
+
+        music.play()
+        .then(function(){
+
+            playPauseBtn.innerText =
+                "⏸";
+
+            musicBars.classList.add(
+                "playing"
+            );
+
+        })
+        .catch(function(){
+
+            playPauseBtn.innerText =
+                "▶";
+
+            musicBars.classList.remove(
+                "playing"
+            );
+
+        });
 
     }else{
 
-        error.innerText =
-            "غلط ياكتكوتي حاول تاني❤️";
+        playPauseBtn.innerText =
+            "▶";
+
+        musicBars.classList.remove(
+            "playing"
+        );
 
     }
 
 }
+
+
+function nextSong(){
+
+    loadSong(
+        currentSong + 1,
+        true
+    );
+
+}
+
+
+function previousSong(){
+
+    loadSong(
+        currentSong - 1,
+        true
+    );
+
+}
+
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+        .then(function(){
+
+            playPauseBtn.innerText =
+                "⏸";
+
+            musicBars.classList.add(
+                "playing"
+            );
+
+        })
+        .catch(function(){});
+
+    }else{
+
+        music.pause();
+
+        playPauseBtn.innerText =
+            "▶";
+
+        musicBars.classList.remove(
+            "playing"
+        );
+
+    }
+
+}
+
+
+/*
+   لما الأغنية تخلص
+   ينتقل تلقائيًا للي بعدها
+*/
+
+music.addEventListener(
+    "ended",
+    function(){
+
+        nextSong();
+
+    }
+);
+
+
+/*
+   تحديث الوقت
+*/
+
+music.addEventListener(
+    "timeupdate",
+    function(){
+
+        let minutes =
+            Math.floor(
+                music.currentTime / 60
+            );
+
+        let seconds =
+            Math.floor(
+                music.currentTime % 60
+            );
+
+        if(seconds < 10){
+
+            seconds =
+                "0" + seconds;
+
+        }
+
+        currentTime.innerText =
+            minutes + ":" + seconds;
+
+    }
+);
+
+
+/* ================= OPEN WEBSITE ================= */
+
+function openWebsite(){
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+    const errorMessage =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    if(password === correctPassword){
+
+        errorMessage.style.display =
+            "none";
+
+        document.getElementById(
+            "lockScreen"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "main"
+        ).style.display =
+            "block";
+
+        loadSong(0,true);
+
+        startTyping();
+
+        createHearts();
+
+    }else{
+
+        errorMessage.style.display =
+            "block";
+
+        document.getElementById(
+            "password"
+        ).value =
+            "";
+
+        document.getElementById(
+            "password"
+        ).focus();
+
+    }
+
+}
+
+
+document
+.getElementById("password")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            openWebsite();
+
+        }
+
+    }
+);
+
+
+/    if(event.key === "Enter"){
+
+        openWebsite();
+
+    }
+
+    }
+);
 
 
 /* ================= PAGES ================= */
@@ -955,7 +1266,7 @@ function nextPage(){
 /* ================= TYPING ================= */
 
 const introText =
-"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى صورنا احنا وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض يبطتي بحبك أوي 🌍❤️❤️.";
+"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗";
 
 
 let typingStarted = false;
@@ -1144,16 +1455,13 @@ function createHeart(){
     heart.innerText =
         [
             "❤️",
-            "💖",
+            "💗",
             "💕",
             "💞",
-            "❤️",
-            "💖",
-            "💕",
-            "💞"
+            "🫶🏻"
         ][
             Math.floor(
-                Math.random() * 8
+                Math.random() * 5
             )
         ];
 
@@ -1198,212 +1506,18 @@ function createHearts(){
 
     setInterval(
         createHeart,
-        400
+        700
     );
 
 }
-
-
-/* ================= MUSIC ================= */
-
-const songs = [
-
-    {
-        title:"فعيني حاجة تانية😍❤️",
-        src:"song2.mp3"
-    },
-
-    {
-        title:"حبيبي وأغلى الناس🏡❤️",
-        src:"song.mp3"
-    },
-
-    {
-        title:"خليك معايا 🫂💗",
-        src:"song1.mp3"
-    }
-
-];
-
-
-let currentSong = 0;
-
-const audio =
-    document.getElementById("audio");
-
-
-function loadSong(
-    index,
-    autoplay
-){
-
-    currentSong = index;
-
-    document.getElementById(
-        "songTitle"
-    ).innerText =
-        songs[index].title;
-
-    audio.src =
-        songs[index].src;
-
-    audio.load();
-
-    if(autoplay){
-
-        audio.play()
-        .then(function(){
-
-            document.getElementById(
-                "playButton"
-            ).innerText = "⏸";
-
-        })
-        .catch(function(){
-
-            document.getElementById(
-                "playButton"
-            ).innerText = "▶";
-
-        });
-
-    }
-
-}
-
-
-function togglePlay(){
-
-    if(audio.paused){
-
-        audio.play()
-        .then(function(){
-
-            document.getElementById(
-                "playButton"
-            ).innerText = "⏸";
-
-        });
-
-    }else{
-
-        audio.pause();
-
-        document.getElementById(
-            "playButton"
-        ).innerText = "▶";
-
-    }
-
-}
-
-
-function nextSongMusic(){
-
-    currentSong++;
-
-     if(currentSong >= songs.length){
-
-        currentSong = 0;
-
-    }
-
-    loadSong(
-        currentSong,
-        true
-    );
-
-}
-
-
-function previousSong(){
-
-    currentSong--;
-
-    if(currentSong < 0){
-
-        currentSong =
-            songs.length - 1;
-
-    }
-
-    loadSong(
-        currentSong,
-        true
-    );
-
-}
-
-
-/* ================= MUSIC EVENTS ================= */
-
-audio.addEventListener(
-    "ended",
-    function(){
-
-        nextSongMusic();
-
-    }
-);
-
-
-audio.addEventListener(
-    "timeupdate",
-    function(){
-
-        if(!audio.duration)
-            return;
-
-        const current =
-            Math.floor(
-                audio.currentTime
-            );
-
-        const duration =
-            Math.floor(
-                audio.duration
-            );
-
-        const currentMinutes =
-            Math.floor(
-                current / 60
-            );
-
-        const currentSeconds =
-            current % 60;
-
-        const durationMinutes =
-            Math.floor(
-                duration / 60
-            );
-
-        const durationSeconds =
-            duration % 60;
-
-        document.getElementById(
-            "time"
-        ).innerText =
-            currentMinutes +
-            ":" +
-            String(
-                currentSeconds
-            ).padStart(2,"0") +
-            " / " +
-            durationMinutes +
-            ":" +
-            String(
-                durationSeconds
-            ).padStart(2,"0");
-
-    }
-);
 
 
 /* ================= INITIAL MUSIC ================= */
 
-// لا يتم تحميل الأغنية هنا قبل الباسورد
-
-createHearts();
+loadSong(
+    0,
+    false
+);
 
 </script>
 
