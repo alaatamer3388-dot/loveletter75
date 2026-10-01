@@ -1185,26 +1185,32 @@ body{
 
 <script>
 
-<script>
+/* ===========
 
-/* ================= PASSWORD ================= */
+ PASSWORD ================= */
 
 const correctPassword = "Love_you_forever";
 
 function openWebsite(){
 
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("errorMessage");
+    const password =
+        document.getElementById("password").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
 
     if(password === correctPassword){
 
         errorMessage.style.display = "none";
 
         document.getElementById("lockScreen").style.display = "none";
+
         document.getElementById("main").style.display = "block";
 
         loadSong(0,true);
+
         startTyping();
+
         createHearts();
 
     }else{
@@ -1212,15 +1218,19 @@ function openWebsite(){
         errorMessage.style.display = "block";
 
         document.getElementById("password").value = "";
+
         document.getElementById("password").focus();
 
     }
+
 }
 
 
 /* ENTER TO UNLOCK */
 
-document.getElementById("password").addEventListener("keydown",function(event){
+document
+.getElementById("password")
+.addEventListener("keydown",function(event){
 
     if(event.key === "Enter"){
         openWebsite();
@@ -1239,14 +1249,14 @@ function showPage(pageNumber){
     for(let i=1;i<=totalPages;i++){
 
         document
-            .getElementById("page"+i)
-            .classList.remove("active");
+        .getElementById("page"+i)
+        .classList.remove("active");
 
     }
 
     document
-        .getElementById("page"+pageNumber)
-        .classList.add("active");
+    .getElementById("page"+pageNumber)
+    .classList.add("active");
 
 }
 
@@ -1317,40 +1327,38 @@ function startTyping(){
 
 /* ================= COUNTER ================= */
 
-var startDate =
+const startDate =
     new Date("2026-05-07T00:00:00");
-
 
 function updateCounter(){
 
-    var now = new Date();
+    const now = new Date();
 
-    var difference =
+    let difference =
         now - startDate;
 
     if(difference < 0){
         difference = 0;
     }
 
-    var totalSeconds =
+    let totalSeconds =
         Math.floor(difference / 1000);
 
-    var days =
+    const days =
         Math.floor(totalSeconds / 86400);
 
     totalSeconds %= 86400;
 
-    var hours =
+    const hours =
         Math.floor(totalSeconds / 3600);
 
     totalSeconds %= 3600;
 
-    var minutes =
+    const minutes =
         Math.floor(totalSeconds / 60);
 
-    var seconds =
+    const seconds =
         totalSeconds % 60;
-
 
     document.getElementById("days").innerText =
         days;
@@ -1366,7 +1374,6 @@ function updateCounter(){
 
 }
 
-
 updateCounter();
 
 setInterval(updateCounter,1000);
@@ -1375,25 +1382,18 @@ setInterval(updateCounter,1000);
 /* ================= MUSIC ================= */
 
 const playlist = [
-
     "song2.mp3",
     "song.mp3",
     "song1.mp3"
-
 ];
 
-
 const songNames = [
-
     "فعيني حاجة تانية😍❤️",
     "حبيبي وأغلى الناس🏡❤️",
     "خليك معايا 🫂💗"
-
 ];
 
-
 let currentSong = 0;
-
 
 const music =
     document.getElementById("music");
@@ -1428,11 +1428,9 @@ function loadSong(index,autoplay=false){
 
     music.load();
 
-
     if(autoplay){
 
-        music.play()
-        .then(function(){
+        music.play().then(function(){
 
             playPauseBtn.innerText =
                 "⏸";
@@ -1441,8 +1439,7 @@ function loadSong(index,autoplay=false){
                 "playing"
             );
 
-        })
-        .catch(function(){
+        }).catch(function(){
 
             playPauseBtn.innerText =
                 "▶";
@@ -1491,8 +1488,7 @@ function toggleMusic(){
 
     if(music.paused){
 
-        music.play()
-        .then(function(){
+        music.play().then(function(){
 
             playPauseBtn.innerText =
                 "⏸";
@@ -1501,8 +1497,7 @@ function toggleMusic(){
                 "playing"
             );
 
-        })
-        .catch(function(){});
+        }).catch(function(){});
 
     }else{
 
@@ -1545,10 +1540,7 @@ music.addEventListener(
             );
 
         if(seconds < 10){
-
-            seconds =
-                "0" + seconds;
-
+            seconds = "0" + seconds;
         }
 
         currentTime.innerText =
@@ -1598,40 +1590,36 @@ function createHeart(){
     heart.className =
         "floating-heart";
 
+    const hearts = [
+        "❤️",
+        "❤️",
+        "❤️",
+        "💖",
+        "💖",
+        "💖",
+        "💕",
+        "💕",
+        "💞",
+        "💞"
+    ];
 
     heart.innerText =
-        [
-            "❤️",
-            "❤️",
-            "❤️",
-            "💖",
-            "💖",
-            "💖",
-            "💕",
-            "💕",
-            "💞",
-            "💞"
-        ][
+        hearts[
             Math.floor(
-                Math.random() * 10
+                Math.random() * hearts.length
             )
         ];
-
 
     heart.style.left =
         Math.random() * 100 + "vw";
 
-
     heart.style.animationDuration =
         (4 + Math.random() * 5) + "s";
-
 
     heart.style.fontSize =
         (15 + Math.random() * 20) + "px";
 
-
     document.body.appendChild(heart);
-
 
     setTimeout(function(){
 
