@@ -14,7 +14,8 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#180006;
+    background:
+        radial-gradient(circle at 50% 20%,#72001d 0%,#3b000f 32%,#180006 68%,#080002 100%);
     color:white;
     min-height:100vh;
     overflow-x:hidden;
@@ -30,7 +31,7 @@ body{
     justify-content:center;
     align-items:center;
     background:
-        radial-gradient(circle at center,#5c0018 0%,#26000b 45%,#090003 100%);
+        radial-gradient(circle at center,#72001d 0%,#35000e 45%,#090003 100%);
     padding:20px;
 }
 
@@ -42,11 +43,9 @@ body{
     border-radius:30px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
-    box-shadow:0 0 35px rgba(255,0,70,0.25);
+    box-shadow:0 0 45px rgba(255,0,70,0.35);
     backdrop-filter:blur(10px);
 }
-
-/* قلب كبير مرسوم بـ CSS */
 
 .lock-heart{
     width:80px;
@@ -56,7 +55,7 @@ body{
     transform:rotate(-45deg);
     background:#ff174f;
     border-radius:10px;
-    filter:drop-shadow(0 0 20px rgba(255,23,79,.7));
+    filter:drop-shadow(0 0 25px rgba(255,23,79,.8));
     animation:heartBeat 1.3s infinite;
 }
 
@@ -96,7 +95,7 @@ body{
     object-fit:cover;
     border-radius:50%;
     border:3px solid #fff;
-    box-shadow:0 0 25px rgba(255,0,80,0.5);
+    box-shadow:0 0 30px rgba(255,0,80,0.6);
     margin-bottom:18px;
 }
 
@@ -147,7 +146,7 @@ body{
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 20px rgba(255,0,70,0.25);
+    box-shadow:0 8px 25px rgba(255,0,70,0.35);
 }
 
 /* ================= MAIN ================= */
@@ -181,13 +180,14 @@ body{
     border-radius:28px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 0 30px rgba(255,0,70,0.12);
+    box-shadow:0 0 35px rgba(255,0,70,0.2);
 }
 
 #typingText{
     font-size:21px;
     line-height:2;
     min-height:250px;
+    white-space:pre-line;
 }
 
 .cursor{
@@ -221,7 +221,7 @@ body{
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 22px rgba(255,0,70,0.25);
+    box-shadow:0 8px 25px rgba(255,0,70,0.35);
     transition:.25s;
 }
 
@@ -234,7 +234,7 @@ body{
 .big-heart{
     font-size:150px;
     animation:heartBeatEmoji 1.2s infinite;
-    filter:drop-shadow(0 0 25px rgba(255,0,70,.5));
+    filter:drop-shadow(0 0 30px rgba(255,0,70,.65));
 }
 
 @keyframes heartBeatEmoji{
@@ -250,7 +250,7 @@ body{
 .love-title{
     font-size:55px;
     margin-top:20px;
-    text-shadow:0 0 20px rgba(255,0,70,.5);
+    text-shadow:0 0 25px rgba(255,0,70,.7);
 }
 
 /* ================= MOMENTS ================= */
@@ -262,12 +262,18 @@ body{
     border-radius:28px;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 0 30px rgba(255,0,70,.15);
+    box-shadow:0 0 35px rgba(255,0,70,.2);
 }
 
 .moment-card h2{
     font-size:30px;
     margin-bottom:20px;
+}
+
+.english{
+    direction:ltr;
+    unicode-bidi:isolate;
+    display:inline-block;
 }
 
 .moment-card p{
@@ -346,7 +352,7 @@ body{
     border-radius:25px;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 0 30px rgba(255,0,70,.15);
+    box-shadow:0 0 35px rgba(255,0,70,.2);
 }
 
 .photo-card img{
@@ -369,7 +375,9 @@ body{
 .final-title{
     font-size:45px;
     margin-bottom:30px;
-    text-shadow:0 0 20px rgba(255,0,70,.5);
+    text-shadow:0 0 25px rgba(255,0,70,.7);
+    direction:ltr;
+    unicode-bidi:isolate;
 }
 
 .final-message{
@@ -383,6 +391,11 @@ body{
     line-height:2.1;
 }
 
+.final-message .english{
+    direction:ltr;
+    unicode-bidi:isolate;
+}
+
 .relive-btn{
     margin-top:30px;
     padding:15px 38px;
@@ -393,7 +406,7 @@ body{
     font-size:19px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,0,70,.3);
+    box-shadow:0 8px 25px rgba(255,0,70,.4);
 }
 
 /* ================= MUSIC PLAYER ================= */
@@ -409,9 +422,9 @@ body{
     z-index:5000;
     padding:12px 15px;
     border-radius:25px;
-    background:rgba(30,0,10,.92);
+    background:rgba(30,0,10,.94);
     border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 0 25px rgba(255,0,70,.2);
+    box-shadow:0 0 30px rgba(255,0,70,.3);
     backdrop-filter:blur(12px);
 }
 
@@ -605,7 +618,7 @@ body{
             alt="Profile"
         >
 
-        <h1>UnLock</h1>
+        <h1>Ready</h1>
 
         <div class="everything">
             my everything
@@ -677,11 +690,12 @@ body{
 
         <div class="moment-card">
 
-            <h2>Our Moments 💗</h2>
+            <h2>
+                <span class="english">Our Moments 💗</span>
+            </h2>
 
             <p>
-                كل لحظة بينا ليها مكان خاص عندي،
-                وإن شاء الله اللي جاي يبقى أحلى وأحلى 🫶🏻❤️
+                بحب كلامنا وكل حاجة صغيرة بينا، وإن شاء الله الأيام الجاية تجمعنا ونعيش أحلى أيام سوا ❤️
             </p>
 
             <button class="next-btn" onclick="nextPage()">
@@ -829,27 +843,27 @@ body{
     <section class="page" id="page8">
 
         <h1 class="final-title">
-            Lovely 💞
+            <span class="english">Lovely 💕</span>
         </h1>
 
         <div class="final-message">
 
             <div>
-                ربنا يخليك ليا💕
+                ربنا يخليك ليا ياروحي 💕
             </div>
 
             <div>
-                وبس كده بعدين هنكبره سوا ياعيوني💗💗
+                وبس كده بعدين هنكبره سوا ياعيوني💕
             </div>
 
             <div>
-                Our story is just beginning. 🫶🏻💗
+                <span class="english">Our story is just beginning 🌍💞</span>
             </div>
 
         </div>
 
         <button class="relive-btn" onclick="reliveStory()">
-            Relive 💗
+            <span class="english">Relive 💗</span>
         </button>
 
     </section>
@@ -859,7 +873,7 @@ body{
 
 <!-- ================= MUSIC PLAYER ================= -->
 
-<div class="fixed-music-player">
+<div class="fixed-music-player" id="musicPlayer">
 
     <div class="player-info">
 
@@ -934,7 +948,6 @@ const songNames = [
     "خليك معايا 🫂💗"
 ];
 
-
 let currentSong = 0;
 
 const music =
@@ -951,6 +964,9 @@ const currentTime =
 
 const musicBars =
     document.getElementById("musicBars");
+
+const musicPlayer =
+    document.getElementById("musicPlayer");
 
 
 function loadSong(index, autoplay=false){
@@ -969,7 +985,6 @@ function loadSong(index, autoplay=false){
         "0:00";
 
     music.load();
-
 
     if(autoplay){
 
@@ -1114,7 +1129,6 @@ function openWebsite(){
             "errorMessage"
         );
 
-
     if(password === correctPassword){
 
         errorMessage.style.display =
@@ -1130,9 +1144,7 @@ function openWebsite(){
         ).style.display =
             "block";
 
-        document.querySelector(
-            ".fixed-music-player"
-        ).style.display =
+        musicPlayer.style.display =
             "block";
 
         loadSong(0,true);
@@ -1147,7 +1159,7 @@ function openWebsite(){
             "block";
 
         document.getElementById(
-            "password"
+                     "password"
         ).value =
             "";
 
@@ -1235,7 +1247,9 @@ function nextPage(){
 /* ================= TYPING ================= */
 
 const introText =
-"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي، بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا، ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا.. وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض، يبطتي بحبك أوي 🌍💗💗💗";
+`😍
+
+حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى صورنا احنا وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض يبطتي بحبك أوي 🌍❤️❤️.`;
 
 
 let typingStarted = false;
@@ -1421,16 +1435,17 @@ function createHeart(){
     heart.className =
         "floating-heart";
 
+    const hearts = [
+        "💖",
+        "❤️",
+        "💞",
+        "💕"
+    ];
+
     heart.innerText =
-        [
-            "❤️",
-            "💗",
-            "💕",
-            "💞",
-            "🫶🏻"
-        ][
+        hearts[
             Math.floor(
-                Math.random() * 5
+                Math.random() * hearts.length
             )
         ];
 
@@ -1471,14 +1486,30 @@ function createHeart(){
 }
 
 
+let heartsStarted = false;
+
+
 function createHearts(){
+
+    if(heartsStarted)
+        return;
+
+    heartsStarted = true;
 
     setInterval(
         createHeart,
-        700
+        500
     );
 
 }
+
+
+/* ================= INITIAL MUSIC ================= */
+
+loadSong(
+    0,
+    false
+);
 
 </script>
 
