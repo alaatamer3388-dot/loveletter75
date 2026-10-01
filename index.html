@@ -399,6 +399,7 @@ body{
 /* ================= MUSIC PLAYER ================= */
 
 .fixed-music-player{
+    display:none;
     position:fixed;
     left:50%;
     bottom:10px;
@@ -604,7 +605,7 @@ body{
             alt="Profile"
         >
 
-        <h1>Ready</h1>
+        <h1>UnLock</h1>
 
         <div class="everything">
             my everything
@@ -921,20 +922,11 @@ const correctPassword = "Love_you_forever";
 
 /* ================= MUSIC ================= */
 
-/*
-   ملفات الأغاني بالترتيب
-*/
-
 const playlist = [
     "song2.mp3",
     "song.mp3",
     "song1.mp3"
 ];
-
-
-/*
-   أسماء الأغاني التي تظهر في المشغل
-*/
 
 const songNames = [
     "فعيني حاجة تانية😍❤️",
@@ -967,17 +959,8 @@ function loadSong(index, autoplay=false){
         (index + playlist.length) %
         playlist.length;
 
-    /*
-       تشغيل ملف الأغنية
-    */
-
     music.src =
         playlist[currentSong];
-
-    /*
-       إظهار اسم الأغنية الحقيقي
-       بدل اسم الملف
-    */
 
     playerTitle.innerText =
         songNames[currentSong];
@@ -1079,11 +1062,6 @@ function toggleMusic(){
 }
 
 
-/*
-   لما الأغنية تخلص
-   ينتقل تلقائيًا للي بعدها
-*/
-
 music.addEventListener(
     "ended",
     function(){
@@ -1093,10 +1071,6 @@ music.addEventListener(
     }
 );
 
-
-/*
-   تحديث الوقت
-*/
 
 music.addEventListener(
     "timeupdate",
@@ -1156,6 +1130,11 @@ function openWebsite(){
         ).style.display =
             "block";
 
+        document.querySelector(
+            ".fixed-music-player"
+        ).style.display =
+            "block";
+
         loadSong(0,true);
 
         startTyping();
@@ -1192,16 +1171,6 @@ document
             openWebsite();
 
         }
-
-    }
-);
-
-
-/    if(event.key === "Enter"){
-
-        openWebsite();
-
-    }
 
     }
 );
@@ -1510,14 +1479,6 @@ function createHearts(){
     );
 
 }
-
-
-/* ================= INITIAL MUSIC ================= */
-
-loadSong(
-    0,
-    false
-);
 
 </script>
 
