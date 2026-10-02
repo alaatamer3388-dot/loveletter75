@@ -704,7 +704,6 @@ body{
 
     <div class="lock-box">
 
-        <!-- القلب هنا رسمة CSS حقيقية وليس إيموجي -->
         <div class="lock-heart"></div>
 
         <img
@@ -758,7 +757,9 @@ body{
             <div id="typingText"></div>
 
             <button class="next-btn" onclick="nextPage()">
-                Next ❤️
+                <span dir="ltr" style="unicode-bidi:isolate;">
+                    Next ❤️
+                </span>
             </button>
 
         </div>
@@ -779,7 +780,9 @@ body{
         </div>
 
         <button class="next-btn" onclick="nextPage()">
-            Next ❤️
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Next ❤️
+            </span>
         </button>
 
     </section>
@@ -791,14 +794,20 @@ body{
 
         <div class="moment-card">
 
-            <h2>Our Moments 💗</h2>
+            <h2>
+                <span dir="ltr" style="unicode-bidi:isolate;">
+                    Our Moments ❤️
+                </span>
+            </h2>
 
             <p>
                 بحب كلامنا وكل حاجة صغيرة بينا، وإن شاء الله الأيام الجاية تجمعنا ونعيش أحلى أيام سوا ❤️
             </p>
 
             <button class="next-btn" onclick="nextPage()">
-                Next ❤️
+                <span dir="ltr" style="unicode-bidi:isolate;">
+                    Next ❤️
+                </span>
             </button>
 
         </div>
@@ -859,7 +868,9 @@ body{
         </div>
 
         <button class="next-btn" onclick="nextPage()">
-            Next ❤️
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Next ❤️
+            </span>
         </button>
 
     </section>
@@ -883,7 +894,9 @@ body{
         </div>
 
         <button class="next-btn" onclick="nextPage()">
-            Next ❤️
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Next ❤️
+            </span>
         </button>
 
     </section>
@@ -907,7 +920,9 @@ body{
         </div>
 
         <button class="next-btn" onclick="nextPage()">
-            Next ❤️
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Next ❤️
+            </span>
         </button>
 
     </section>
@@ -931,7 +946,9 @@ body{
         </div>
 
         <button class="next-btn" onclick="nextPage()">
-            Next ❤️
+            <span dir="ltr" style="unicode-bidi:isolate;">
+                Next ❤️
+            </span>
         </button>
 
     </section>
@@ -943,7 +960,7 @@ body{
 
         <h1 class="final-title">
             <span dir="ltr" style="unicode-bidi:isolate;">
-                Lovely 💞
+                7𝒂𝒃𝒊𝒃 3𝒐𝒎𝒓𝒚 🌏💕
             </span>
         </h1>
 
@@ -1343,7 +1360,7 @@ document
 /* ================= TYPING ================= */
 
 const introText =
-"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتناوبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض يبطتي بحبك أوي 🌍💗💗💗.";
+"حبيت أقولك يا نور عيني إني بحبك وبحب وجودك في حياتي بتمنى نفضل مع بعض لآخر العمر ونكمل حياتنا سوا ونعمل مع بعض مومنتس حلوة كده عشان نحطها بدل الصور دي وتبقى الصور بتاعتنا وبتمنى العداد ده يفضل يعد وميفصلش أبدا طول ما إحنا مع بعض يبطتي بحبك أوي 🌍💗💗💗.";
 
 
 let typingStarted = false;
@@ -1528,8 +1545,6 @@ function createHeart(){
 
     heart.className =
         "floating-heart";
-
-    /* ❤️ يظهر أكثر من باقي القلوب */
 
     heart.innerText =
         [
